@@ -566,7 +566,7 @@ Color.prototype = {
 		// NOTE(SB): using node-clone creates a dependency to Buffer when using browserify,
 		// making the final build way to big to embed in Chart.js. So let's do it manually,
 		// assuming that values to clone are 1 dimension arrays containing only numbers,
-		// except 'alpha' which is a number.
+		// except 'alpha' which is a nmber.
 		var result = new Color();
 		var source = this.values;
 		var target = result.values;
