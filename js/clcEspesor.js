@@ -1,5 +1,67 @@
 $(document).ready(function () {
+    $('#diseñoEconomico').on('click', function () {
+        var diseñoEconomico = $("#diseñoEconomico")
+        if (diseñoEconomico.is(":checked")) {
+            var w18 = parseFloat($('#Esals_Flexible').val());
+            if (w18 < 50000) {
+                $("#espesor_asfalto_recomendado").val("1.00");
+                $("#espesor_base_recomendado").val("4.00");
+            } else if (50001 <= w18 && w18 <= 150000) {
+                $("#espesor_asfalto_recomendado").val("2.00");
+                $("#espesor_base_recomendado").val("4.00");
+            } else if (150001 <= w18 && w18 <= 500000) {
+                $("#espesor_asfalto_recomendado").val("2.50");
+                $("#espesor_base_recomendado").val("4.00");
+            } else if (500001 <= w18 && w18 <= 2000000) {
+                $("#espesor_asfalto_recomendado").val("3.00");
+                $("#espesor_base_recomendado").val("6.00");
+            } else if (2000001 <= w18 && w18 <= 7000000) {
+                $("#espesor_asfalto_recomendado").val("3.50");
+                $("#espesor_base_recomendado").val("6.00");
+            } else if (w18 >= 7000001) {
+                $("#espesor_asfalto_recomendado").val("4.00");
+                $("#espesor_base_recomendado").val("6.00");
+            }
+            $("#espesor_asfalto_recomendado").prop("disabled", true);
+            $("#espesor_base_recomendado").prop("disabled", true);
+            $("#recal_diseñoEconomico").show();
+            $("#recal_espesores").hide();
 
+            var a1 = parseFloat($('#coeficiente_a1_oculto').val());
+            var D1 = parseFloat($('#espesor_asfalto_recomendado').val());
+            var m2 = parseFloat($('#m2').val());
+            var a2 = parseFloat($('#coefa2').val());
+            var D2 = parseFloat($('#espesor_base_recomendado').val());
+            var m3 = parseFloat($('#m3').val());
+            var a3 = parseFloat($('#coefa3').val());
+            var Sn1 = a1 * D1;
+            var Snb = a2 * m2 * D2;
+            var Sn2 = Sn1 + Snb;
+            var Sn3 = parseFloat($('#sn3').val());
+            var Snsb = Sn3 - Sn2;
+            var D3 = Snsb / (a3 * m3);
+            var D3_redondeado= (Math.ceil(D3 / 0.5) * 0.5)
+            $("#espesor_subbase_recomendado").val(D3_redondeado.toFixed(2));
+            
+            document.getElementById("diseño_eco_sn1_proces").innerHTML = "SN<SUB>1</SUB> = D<SUB>1</SUB> x a<SUB>1</SUB>"
+            document.getElementById("diseño_eco_sn1_result").innerHTML = "SN<SUB>1</SUB> = " + D1.toFixed(2) + " x " + a1.toFixed(2) + " = " + Sn1.toFixed(2);
+            document.getElementById("diseño_eco_snb_proces").innerHTML = "SN<SUB>b</SUB> = D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>"
+            document.getElementById("diseño_eco_snb_result").innerHTML = "SN<SUB>b</SUB> = " + D2.toFixed(2) + " x " + a2.toFixed(2) + " x " + m2.toFixed(2) + " = " + Snb.toFixed(2);
+            document.getElementById("diseño_eco_sn2_proces").innerHTML = "SN<SUB>2</SUB> = SN<SUB>1</SUB> + SN<SUB>b</SUB>"
+            document.getElementById("diseño_eco_sn2_result").innerHTML = "SN<SUB>2</SUB> = " + Sn1.toFixed(2) + " + " + Snb.toFixed(2) +  " = " + Sn2.toFixed(2);
+            document.getElementById("diseño_eco_snsb_proces").innerHTML = "SN<SUB>sb</SUB> = SN<SUB>3</SUB> - SN<SUB>2</SUB>"
+            document.getElementById("diseño_eco_snsb_result").innerHTML = "SN<SUB>sb</SUB> = " + Sn3.toFixed(2) + " - " + Sn2.toFixed(2) +  " = " + Snsb.toFixed(2);
+            document.getElementById("diseño_eco_d3_proces").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
+            document.getElementById("diseño_eco_d3_result").innerHTML = "D<SUB>3</SUB>" + " = " + Snsb.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + D3_redondeado.toFixed(2);
+        } else {
+            $('#btnClcSN').trigger('click');
+            $("#espesor_asfalto_recomendado").prop("disabled", false);
+            $("#espesor_base_recomendado").prop("disabled", false);
+            $("#recal_diseñoEconomico").hide();
+            $("#recal_espesores").hide();
+        };
+
+    });
 
 
 
@@ -8,12 +70,12 @@ $(document).ready(function () {
         var addBase = $("#addBase")
         $('.recalc_process').css('display', 'none');
 
-        if(($("#traficoTMDAflexible").val() === "")&&($("#traficoTasa_CreFlexible").val() === "")&&($("#traficoPeriodo_diseñoFlexible").val() === "")&&($("#traficoDireccionalidadFlexible").val() === "")&&($("#traficoSN_Flexible").val() === "")){
+        if (($("#traficoTMDAflexible").val() === "") && ($("#traficoTasa_CreFlexible").val() === "") && ($("#traficoPeriodo_diseñoFlexible").val() === "") && ($("#traficoDireccionalidadFlexible").val() === "") && ($("#traficoSN_Flexible").val() === "")) {
             $("#aviso_ESALS").show();
         } else {
-        $("#aviso_ESALS").hide();
-    }
-        
+            $("#aviso_ESALS").hide();
+        }
+
         if ((addBase.is(":checked")) && (addSubbase.is(":checked"))) {
             var sn3 = Newton3();
 
@@ -241,19 +303,19 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
-                document.getElementById("procesoEspBase").innerHTML = ("D2" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
-                document.getElementById("calcEspBase").innerHTML = ("D2" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
+                document.getElementById("procesoEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
+                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
                 $("#espesor_base_clc").val(espesor_base_recomendado.toFixed(2));
 
-                document.getElementById("procesoEspSubbase").innerHTML = ("D3" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
-                document.getElementById("calcEspSubbase").innerHTML = ("D3" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
+                document.getElementById("procesoEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
+                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
                 $("#espesor_subbase_clc").val(espesor_subbase_recomendado.toFixed(2));
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -428,16 +490,16 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
-                document.getElementById("procesoEspSubbase").innerHTML = ("D3" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
-                document.getElementById("calcEspSubbase").innerHTML = ("D3" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
+                document.getElementById("procesoEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
+                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
                 $("#espesor_subbase_clc").val(espesor_subbase_recomendado.toFixed(2));
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D3 x a<SUB>3</SUB> x m<SUB>3</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>3</SUB> x m<SUB>3</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -614,16 +676,16 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
-                document.getElementById("procesoEspBase").innerHTML = ("D2" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
-                document.getElementById("calcEspBase").innerHTML = ("D2" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
+                document.getElementById("procesoEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
+                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
                 $("#espesor_base_clc").val(espesor_base_recomendado.toFixed(2));
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -742,14 +804,14 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn3.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn3.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
 
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -945,16 +1007,16 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn1.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
-                document.getElementById("procesoEspBase").innerHTML = ("D2" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
-                document.getElementById("calcEspBase").innerHTML = ("D2" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
+                document.getElementById("procesoEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
+                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
                 $("#espesor_base_clc").val(espesor_base_recomendado.toFixed(2));
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -1073,14 +1135,14 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn3.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn3.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
 
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -1274,18 +1336,18 @@ $(document).ready(function () {
                     var rev = "No cumple"
                 }
 
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>2</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn2.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>2</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn2.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
 
 
-                document.getElementById("procesoEspSubbase").innerHTML = ("D3" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
-                document.getElementById("calcEspSubbase").innerHTML = ("D3" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
+                document.getElementById("procesoEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
+                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
                 $("#espesor_subbase_clc").val(espesor_subbase_recomendado.toFixed(2));
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D3 x a<SUB>3</SUB> x m<SUB>3</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>3</SUB> x m<SUB>3</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -1404,14 +1466,14 @@ $(document).ready(function () {
                 } else {
                     var rev = "No cumple"
                 }
-                document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>2</SUB>" + " / " + "a<SUB>1</SUB>");
-                document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn2.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+                document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>2</SUB>" + " / " + "a<SUB>1</SUB>");
+                document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn2.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
 
 
 
-                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+                document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -1542,14 +1604,14 @@ $(document).ready(function () {
             } else {
                 var rev = "No cumple"
             }
-            document.getElementById("procesoEspAsfalto").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-            document.getElementById("calcEspAsfalto").innerHTML = ("D1" + " = " + sn3.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
+            document.getElementById("procesoEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+            document.getElementById("calcEspAsfalto").innerHTML = ("D<SUB>1</SUB>" + " = " + sn3.toFixed(2) + " / " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + $('#resultado_EspAsfalte').text());
             $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
 
 
 
-            document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
@@ -1607,17 +1669,17 @@ function recalcularBase() {
 
         $("#espesor_asfalto_recomendado").val((Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2));
         $("#espesor_subbase_recomendado").val((Math.ceil(espesor_subbase_recomendado / 0.5) * 0.5).toFixed(2));
-        document.getElementById("proceso_SNbase_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+        document.getElementById("proceso_SNbase_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
         document.getElementById("clc_SNbase_recal").innerHTML = "SN<SUB>b</SUB>" + " = " + espesorBasecorr.toFixed(2) + " x " + a2.toFixed(3) + " x " + m2.toFixed(2) + " " + " = " + SN2_corr.toFixed(2);
 
-        document.getElementById("proceso_SN2_recal").innerHTML = ("SN<SUB>2</SUB>" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2<SUB>(recomendado)</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
+        document.getElementById("proceso_SN2_recal").innerHTML = ("SN<SUB>2</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB><SUB>(recomendado)</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
         document.getElementById("clc_SN2_recal").innerHTML = "SN<SUB>2</SUB>" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + " = " + SN2.toFixed(2);
 
         document.getElementById("proceso_SN1_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "SN<SUB>2</SUB>" + " - " + "SN<SUB>b</SUB>");
         document.getElementById("clc_SN1_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + SN2.toFixed(2) + " - " + SN2_corr.toFixed(3) + " = " + SN1.toFixed(2);
 
-        document.getElementById("proceso_D1_recal").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-        document.getElementById("clc_D1_recal").innerHTML = "D1" + " = " + SN1.toFixed(2) + " / " + a1.toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2);
+        document.getElementById("proceso_D1_recal").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+        document.getElementById("clc_D1_recal").innerHTML = "D<SUB>1</SUB>" + " = " + SN1.toFixed(2) + " / " + a1.toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2);
         if (espesor_asfalto_recomendado > 0) {
             $('.espesorAsfalto').show(10);
             $('.espesorAsfalto_inf').css('display', 'none');
@@ -1628,7 +1690,7 @@ function recalcularBase() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1641,7 +1703,7 @@ function recalcularBase() {
             } else {
                 var rev = "No cumple"
             }
-            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1656,7 +1718,7 @@ function recalcularBase() {
 
         $("#espesor_asfalto_recomendado").val((Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2));
 
-        document.getElementById("proceso_SNbase_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+        document.getElementById("proceso_SNbase_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
         document.getElementById("clc_SNbase_recal").innerHTML = "SN<SUB>b</SUB>" + " = " + espesorBasecorr.toFixed(2) + " x " + a2.toFixed(3) + " x " + m2.toFixed(2) + " " + " = " + SN2_corr.toFixed(2);
 
         document.getElementById("proceso_SN2_recal").innerHTML = ("SN<SUB>2</SUB>" + " = " + "SN<SUB>3</SUB>");
@@ -1665,8 +1727,8 @@ function recalcularBase() {
         document.getElementById("proceso_SN1_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "SN<SUB>2</SUB>" + " - " + "SN<SUB>b</SUB>");
         document.getElementById("clc_SN1_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + SN3.toFixed(2) + " - " + SN2_corr.toFixed(3) + " = " + SN1_sinSubbase.toFixed(2);
 
-        document.getElementById("proceso_D1_recal").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-        document.getElementById("clc_D1_recal").innerHTML = "D1" + " = " + SN1_sinSubbase.toFixed(2) + " / " + a1.toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2);
+        document.getElementById("proceso_D1_recal").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+        document.getElementById("clc_D1_recal").innerHTML = "D<SUB>1</SUB>" + " = " + SN1_sinSubbase.toFixed(2) + " / " + a1.toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2);
         if (espesor_asfalto_recomendado > 0) {
             $('.espesorAsfalto').show(10);
             $('.espesorAsfalto_inf').css('display', 'none');
@@ -1677,7 +1739,7 @@ function recalcularBase() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1690,7 +1752,7 @@ function recalcularBase() {
             } else {
                 var rev = "No cumple"
             }
-            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+            document.getElementById("procesoSN_recal").innerHTML = ("SN" + " = " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1734,14 +1796,14 @@ function recalcularSubbase() {
 
         $("#espesor_asfalto_recomendado").val((Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2));
         $("#espesor_base_recomendado").val((Math.ceil(espesor_base_recomendado / 0.5) * 0.5).toFixed(2));
-        document.getElementById("proceso_SNsubbase_recal").innerHTML = ("SN<SUB>sb</SUB>" + " = " + "D3 x a<SUB>3</SUB> x m<SUB>3</SUB>");
+        document.getElementById("proceso_SNsubbase_recal").innerHTML = ("SN<SUB>sb</SUB>" + " = " + "D<SUB>3</SUB> x a<SUB>3</SUB> x m<SUB>3</SUB>");
         document.getElementById("clc_SNsubbase_recal").innerHTML = "SN<SUB>sb</SUB>" + " = " + espesorSubbasecorr.toFixed(2) + " x " + a3.toFixed(3) + " x " + m3.toFixed(2) + " " + " = " + SN_subbase.toFixed(2);
 
         document.getElementById("proceso_SN_base_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "SN<SUB>3</SUB>" + " - " + "(" + "SN<SUB>sb</SUB> + SN<SUB>1</SUB>" + ")");
         document.getElementById("clc_SN_base_recal").innerHTML = "SN<SUB>b</SUB>" + " = " + SN3.toFixed(2) + " - " + "(" + SN_subbase.toFixed(2) + "     +     " + SN1.toFixed(2) + " ) " + " " + " = " + SN_base.toFixed(2);
 
-        document.getElementById("proceso_D2_recal").innerHTML = ("D2" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB> x m<SUB>2</SUB>");
-        document.getElementById("clc_D2_recal").innerHTML = "D2" + " = " + SN_base.toFixed(2) + " / " + a2.toFixed(3) + "x" + m2.toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_base_recomendado / 0.5) * 0.5).toFixed(2);
+        document.getElementById("proceso_D2_recal").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB> x m<SUB>2</SUB>");
+        document.getElementById("clc_D2_recal").innerHTML = "D<SUB>2</SUB>" + " = " + SN_base.toFixed(2) + " / " + a2.toFixed(3) + "x" + m2.toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_base_recomendado / 0.5) * 0.5).toFixed(2);
         if (espesor_base_recomendado > 0) {
             $('.espesorBase').show(10);
             $('.espesorBase_inf').css('display', 'none');
@@ -1752,7 +1814,7 @@ function recalcularSubbase() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_sb").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + (Math.ceil(espesor_base_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_sb").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_sb").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1765,7 +1827,7 @@ function recalcularSubbase() {
             } else {
                 var rev = "No cumple"
             }
-            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_sb").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_sb").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_sb").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1780,14 +1842,14 @@ function recalcularSubbase() {
 
         $("#espesor_asfalto_recomendado").val((Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2));
 
-        document.getElementById("proceso_SNsubbase_recal").innerHTML = ("SN<SUB>sb</SUB>" + " = " + "D3 x a<SUB>3</SUB> x m<SUB>3</SUB>");
+        document.getElementById("proceso_SNsubbase_recal").innerHTML = ("SN<SUB>sb</SUB>" + " = " + "D<SUB>3</SUB> x a<SUB>3</SUB> x m<SUB>3</SUB>");
         document.getElementById("clc_SNsubbase_recal").innerHTML = "SN<SUB>sb</SUB>" + " = " + espesorSubbasecorr.toFixed(2) + " x " + a3.toFixed(3) + " x " + m3.toFixed(2) + " " + " = " + SN_subbase.toFixed(2);
 
         document.getElementById("proceso_SN_base_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "SN<SUB>3</SUB>" + " - " + "SN<SUB>sb</SUB>");
         document.getElementById("clc_SN_base_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + SN3.toFixed(2) + " - " + SN_subbase.toFixed(2) + " " + " = " + SN_1.toFixed(2);
 
-        document.getElementById("proceso_D2_recal").innerHTML = ("D1" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
-        document.getElementById("clc_D2_recal").innerHTML = "D1" + " = " + SN_1.toFixed(2) + " / " + a1.toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2);
+        document.getElementById("proceso_D2_recal").innerHTML = ("D<SUB>1</SUB>" + " = " + "SN<SUB>1</SUB>" + " / " + "a<SUB>1</SUB>");
+        document.getElementById("clc_D2_recal").innerHTML = "D<SUB>1</SUB>" + " = " + SN_1.toFixed(2) + " / " + a1.toFixed(3) + " = " + espesor_asfalto_recomendado.toFixed(2) + " ≈ " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2);
         if (espesor_asfalto_recomendado > 0) {
             $('.espesorAsfalto').show(10);
             $('.espesorBase_recal').show(10);
@@ -1800,7 +1862,7 @@ function recalcularSubbase() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D3 x a<SUB>3</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>3</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_sb").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + espesorSubbasecorr.toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + "      +     " + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_sb").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_sb").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1815,7 +1877,7 @@ function recalcularSubbase() {
             } else {
                 var rev = "No cumple"
             }
-            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D3 x a<SUB>3</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_sb").innerHTML = ("SN" + " = " + "D<SUB>3</SUB> x a<SUB>3</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_sb").innerHTML = "SN" + " = " + espesorSubbasecorr.toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_sb").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_sb").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1872,7 +1934,7 @@ function recalcularAslfalto() {
             $('.espesor_sinBase').hide();
             $('.espesor_sinSubbase').hide();
             $('.espesor_sinBaseSubbase').css('display', 'none');
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1.toFixed(2);
             document.getElementById("proceso_SNbase_asf_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "SN<SUB>2</SUB> - SN<SUB>1</SUB>");
             document.getElementById("clc_SNbase_asf_recal").innerHTML = "SN<SUB>b</SUB>" + " = " + SN2.toFixed(2) + " - " + SN1.toFixed(2) + " " + " = " + SN_base.toFixed(2);
@@ -1886,10 +1948,10 @@ function recalcularAslfalto() {
 
             }
 
-            document.getElementById("proceso_D2_asf_recal").innerHTML = ("D2" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB> x m<SUB>2</SUB>");
-            document.getElementById("clc_D2_asf_recal").innerHTML = "D2" + " = " + SN_base.toFixed(2) + " / " + a2.toFixed(3) + "x" + m2.toFixed(2) + " = " + D2.toFixed(2) + " ≈ " + (Math.ceil(D2 / 0.5) * 0.5).toFixed(2);
-            document.getElementById("proceso_D3_recal").innerHTML = ("D3" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
-            document.getElementById("clc_D3_recal").innerHTML = "D3" + " = " + SN_subbase.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + (Math.ceil(D3 / 0.5) * 0.5).toFixed(2);
+            document.getElementById("proceso_D2_asf_recal").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB> x m<SUB>2</SUB>");
+            document.getElementById("clc_D2_asf_recal").innerHTML = "D<SUB>2</SUB>" + " = " + SN_base.toFixed(2) + " / " + a2.toFixed(3) + "x" + m2.toFixed(2) + " = " + D2.toFixed(2) + " ≈ " + (Math.ceil(D2 / 0.5) * 0.5).toFixed(2);
+            document.getElementById("proceso_D3_recal").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
+            document.getElementById("clc_D3_recal").innerHTML = "D<SUB>3</SUB>" + " = " + SN_subbase.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + (Math.ceil(D3 / 0.5) * 0.5).toFixed(2);
 
             var SNf = ((Math.ceil(espesorAsfaltocorr / 0.5) * 0.5) * parseFloat($('#coeficiente_a1_oculto').val())) + (D2 * ((parseFloat($('#coefa2').val())) * (parseFloat($('#m2').val())))) + (D3 * ((parseFloat($('#coefa3').val())) * (parseFloat($('#m3').val()))));
             if (SNf >= parseFloat($('#sn3').val())) {
@@ -1898,13 +1960,13 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + (Math.ceil(D2 / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + D3.toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
 
         } else if ((D2 <= 0) && (D3 > 0)) {
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1.toFixed(2);
             document.getElementById("proceso_SNbase_asf_recal").innerHTML = ""
             document.getElementById("clc_SNbase_asf_recal").innerHTML = ""
@@ -1926,8 +1988,8 @@ function recalcularAslfalto() {
             document.getElementById("proceso_D2_asf_recal").innerHTML = ""
             document.getElementById("clc_D2_asf_recal").innerHTML = ""
 
-            document.getElementById("proceso_D3_recal").innerHTML = ("D3" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
-            document.getElementById("clc_D3_recal").innerHTML = "D3" + " = " + SN_subbase.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + (Math.ceil(D3 / 0.5) * 0.5).toFixed(2);
+            document.getElementById("proceso_D3_recal").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
+            document.getElementById("clc_D3_recal").innerHTML = "D<SUB>3</SUB>" + " = " + SN_subbase.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + (Math.ceil(D3 / 0.5) * 0.5).toFixed(2);
 
             var SNf = ((Math.ceil(espesorAsfaltocorr / 0.5) * 0.5) * parseFloat($('#coeficiente_a1_oculto').val())) + (D3 * ((parseFloat($('#coefa3').val())) * (parseFloat($('#m3').val()))));
             if (SNf >= parseFloat($('#sn3').val())) {
@@ -1936,17 +1998,17 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + D3.toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
         } else if ((D2 <= 0) && (D3 <= 0)) {
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1.toFixed(2);
             document.getElementById("proceso_SNbase_asf_recal").innerHTML = ""
             document.getElementById("clc_SNbase_asf_recal").innerHTML = ""
             document.getElementById("proceso_SNsubbase_asf_recal").innerHTML = ""
-                document.getElementById("clc_SNsubbase_asf_recal").innerHTML = ""
+            document.getElementById("clc_SNsubbase_asf_recal").innerHTML = ""
             $('.espesorBase').css('display', 'none');
             $('.espesorSubbase').css('display', 'none');
             $('.espesor_sinBase').css('display', 'none');
@@ -1964,7 +2026,7 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -1979,16 +2041,16 @@ function recalcularAslfalto() {
             $('.espesor_sinBase').css('display', 'none');
             $('.espesor_sinSubbase').hide();
             $('.espesor_sinBaseSubbase').css('display', 'none');
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1.toFixed(2);
             document.getElementById("proceso_SNbase_asf_recal").innerHTML = ("SN<SUB>b</SUB>" + " = " + "SN<SUB>3</SUB> - SN<SUB>1</SUB>");
             document.getElementById("clc_SNbase_asf_recal").innerHTML = "SN<SUB>b</SUB>" + " = " + SN3.toFixed(2) + " - " + SN1.toFixed(2) + " " + " = " + SN_base_sinSubbase.toFixed(2);
             document.getElementById("proceso_SNsubbase_asf_recal").innerHTML = ""
             document.getElementById("clc_SNsubbase_asf_recal").innerHTML = ""
 
-            document.getElementById("proceso_D2_asf_recal").innerHTML = ("D2" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB> x m<SUB>2</SUB>");
-            document.getElementById("clc_D2_asf_recal").innerHTML = "D2" + " = " + SN_base_sinSubbase.toFixed(2) + " / " + a2.toFixed(3) + "x" + m2.toFixed(2) + " = " + D2.toFixed(2) + " ≈ " + (Math.ceil(D2 / 0.5) * 0.5).toFixed(2);
-            
+            document.getElementById("proceso_D2_asf_recal").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB> x m<SUB>2</SUB>");
+            document.getElementById("clc_D2_asf_recal").innerHTML = "D<SUB>2</SUB>" + " = " + SN_base_sinSubbase.toFixed(2) + " / " + a2.toFixed(3) + "x" + m2.toFixed(2) + " = " + D2.toFixed(2) + " ≈ " + (Math.ceil(D2 / 0.5) * 0.5).toFixed(2);
+
             document.getElementById("proceso_D3_recal").innerHTML = ""
             document.getElementById("clc_D3_recal").innerHTML = ""
 
@@ -1999,17 +2061,17 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D2 x a<SUB>2</SUB> x m<SUB>2</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + (Math.ceil(D2 / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
         } else {
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1.toFixed(2);
             document.getElementById("proceso_SNbase_asf_recal").innerHTML = ""
             document.getElementById("clc_SNbase_asf_recal").innerHTML = ""
             document.getElementById("proceso_SNsubbase_asf_recal").innerHTML = ""
-                document.getElementById("clc_SNsubbase_asf_recal").innerHTML = ""
+            document.getElementById("clc_SNsubbase_asf_recal").innerHTML = ""
             $('.espesorBase').css('display', 'none');
             $('.espesorSubbase').css('display', 'none');
             $('.espesor_sinBase').show();
@@ -2027,7 +2089,7 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
@@ -2044,7 +2106,7 @@ function recalcularAslfalto() {
             $('.espesor_sinSubbase').hide();
             $('.espesor_sinBaseSubbase').css('display', 'none');
 
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1_sinBase.toFixed(2);
 
 
@@ -2054,8 +2116,8 @@ function recalcularAslfalto() {
 
 
 
-            document.getElementById("proceso_D3_recal").innerHTML = ("D3" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
-            document.getElementById("clc_D3_recal").innerHTML = "D3" + " = " + SN_subbase_sinBase.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + (Math.ceil(D3 / 0.5) * 0.5).toFixed(2);
+            document.getElementById("proceso_D3_recal").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
+            document.getElementById("clc_D3_recal").innerHTML = "D<SUB>3</SUB>" + " = " + SN_subbase_sinBase.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + (Math.ceil(D3 / 0.5) * 0.5).toFixed(2);
 
             var SNf = ((Math.ceil(espesorAsfaltocorr / 0.5) * 0.5) * parseFloat($('#coeficiente_a1_oculto').val())) + (D3 * ((parseFloat($('#coefa3').val())) * (parseFloat($('#m3').val()))));
             if (SNf >= parseFloat($('#sn3').val())) {
@@ -2064,13 +2126,13 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>" + " + " + "D3 x a<SUB>2</SUB> x m<SUB>3</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + D3.toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
         } else {
 
-            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("proceso_SN1_asf_recal").innerHTML = ("SN<SUB>1</SUB>" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("clc_SN1_asf_recal").innerHTML = "SN<SUB>1</SUB>" + " = " + espesorAsfaltocorr.toFixed(2) + " x " + a1.toFixed(3) + " " + " = " + SN1_sinBase.toFixed(2);
             document.getElementById("proceso_SNsubbase_asf_recal").innerHTML = ""
             document.getElementById("clc_SNsubbase_asf_recal").innerHTML = ""
@@ -2090,7 +2152,7 @@ function recalcularAslfalto() {
                 var rev = "No cumple"
             }
 
-            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D1 x a<SUB>1</SUB>");
+            document.getElementById("procesoSN_recal_asf").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>");
             document.getElementById("calcSN_recal_asf").innerHTML = "SN" + " = " + (Math.ceil(espesorAsfaltocorr / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_asf").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_asf").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;

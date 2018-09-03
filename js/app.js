@@ -23,6 +23,10 @@ $(document).ready(function () {
         $('#esal').show(500);
 
     });
+    $('#salirProcesos').click(function () {
+        $('#detalle').trigger('click');
+
+    });
 
    
 

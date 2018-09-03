@@ -353,7 +353,28 @@ function imprimir() {
 	document.getElementById('graphics11').style.display = 'none';
 
 	var printme1 = document.getElementById("titulo_principal_reporte");
-	var printme2 = document.getElementById("print_proceso_Trafico");
+	var printme2 = document.getElementById("procesoTrafico");
+	var requivalenciaAux = $(printme2).find('#Valores_factor_Equivalencia').html(); //Guarda temporalmente
+	$(printme2).find('#Valores_factor_Equivalencia').html('');
+	printme2Txt = $(printme2).html();
+	$(printme2).find('#Valores_factor_Equivalencia').html(requivalenciaAux); //Restaura div
+	var tablasEquivalencia = $('<div></div>');
+	var ntabla = 0;
+	$('.item-trafico').each(function(i, item){
+		var interpolacion = $(item).attr('value') * 1;
+		if(interpolacion > 0){
+			ntabla = ntabla + 1;
+			var index = $(item).attr('index');
+			var eje = $(item).attr('eje');
+			var item = tipoVehiculos[index];
+			var data = item['data' + eje];
+			var title = 'Tabla 1.' + ntabla + '. Interpolación ' + item.tipo + ' - Eje ' + eje;
+			CargarTablaEquivalencia(tablasEquivalencia, data, title);
+			
+		}
+	});
+	$("#tablasEquivalencia").css("text-align", "center");
+
 	var printme3 = document.getElementById("titulo_drenajeBase_reporte");
 	var printme4 = document.getElementById("print_drenaje_base");
 	var printme5 = document.getElementById("titulo_drenajeSubbase_reporte");
@@ -401,7 +422,7 @@ function imprimir() {
 	var wme = window.open('', 'Print-Window');
 
 	
-	wme.document.write('<html><head><style type="text/css"> @media print {@page {margin: 20mm 25mm 20mm 25mm;  }   } a:link {color:black; text-decoration: none} a:visited {color:black; text-decoration: none} a:active {color:black; text-decoration: none} a:hover {color:black; text-decoration: none}   </style> </head><body onload="window.print()" >' + caratula.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + declaracion.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + printme.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + printme0.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + printme1.innerHTML + printme2.innerHTML + printme3.innerHTML + printme4.innerHTML + printme5.innerHTML + printme6.innerHTML + printme7.innerHTML + printme8.innerHTML + printme9.innerHTML + printme10.innerHTML + printme11.innerHTML + printme12.innerHTML + printme13.innerHTML + printme14.innerHTML + '</body></html>');
+	wme.document.write('<html><head><style type="text/css"> @media print {@page {margin: 20mm 25mm 20mm 25mm;  }   } a:link {color:black; text-decoration: none} a:visited {color:black; text-decoration: none} a:active {color:black; text-decoration: none} a:hover {color:black; text-decoration: none}   </style> </head><body onload="window.print()" >' + caratula.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + declaracion.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + printme.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + printme0.innerHTML + '<p style = "page-break-after: always;"> &nbsp; </ p>' + printme1.innerHTML + printme2Txt + tablasEquivalencia.html() + printme3.innerHTML + printme4.innerHTML + printme5.innerHTML + printme6.innerHTML + printme7.innerHTML + printme8.innerHTML + printme9.innerHTML + printme10.innerHTML + printme11.innerHTML + printme12.innerHTML + printme13.innerHTML + printme14.innerHTML + '</body></html>');
 
 	wme.document.close($("#aviso_ESALS").show());
 	

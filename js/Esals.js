@@ -88,26 +88,14 @@ $(function() {
         var eje = $(this).attr('eje');
         var item = tipoVehiculos[index];
         var data = item['data' + eje];
+        var title = 'Factores de equivalencia: ' + item.tipo + ' - Eje ' + eje;
 
-        $('#tabla_factor_Equivalencia').show();
-        var tbEqv = $('#tabla_factor_Equivalencia tbody');
-        $(tbEqv).html('');
+        $('#Valores_factor_Equivalencia').show();
+        $('#Valores_factor_Equivalencia').html('');
 
-        if (data.tabla != null) {
-            $(data.tabla).each(function(i, dfila) {
-                var tr = '<tr class="' + (data.finf == i || data.fsup == i ? 'info' : '') + '">'
-                $(dfila).each(function(j, dcol) {
-                    tr += '<td class="' + (data.csn == j ? 'info' : '') + '">' + dcol + '</td>';
-                })
-                tr += '</tr>';
-                $(tbEqv).append(tr);
-                if (($("#tabla_factor_Equivalencia tr").hasClass("info")) || ($("#tabla_factor_Equivalencia td").hasClass("info"))) {
-                    $("#tabla_factor_Equivalencia tr.info td.info").css('background-color', "#008ED1");
-                    
+        CargarTablaEquivalencia('#Valores_factor_Equivalencia', data, title);        
 
-                }
-            });
-        }
+        
     });
 
 
@@ -194,10 +182,10 @@ function CargarTablaTrafico() {
             tr += '<td>' + (item.peso3 ? item.peso3 : '') + '</td>';
             tr += '<td>' + (item.peso4 ? item.peso4 : '') + '</td>';
             tr += '<td>' + item.porcentaje + '</td>';
-            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="1">' + item.int1.toFixed(4) + '</a></td>';
-            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="2">' + item.int2.toFixed(4) + '</a></td>';
-            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="3">' + item.int3.toFixed(4) + '</a></td>';
-            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="4">' + item.int4.toFixed(4) + '</a></td>';
+            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="1" value="'+item.int1.toFixed(4)+'">' + item.int1.toFixed(4) + '</a></td>';
+            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="2" value="'+item.int2.toFixed(4)+'">' + item.int2.toFixed(4) + '</a></td>';
+            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="3" value="'+item.int3.toFixed(4)+'">' + item.int3.toFixed(4) + '</a></td>';
+            tr += '<td><a href="javascript:void(0);" index="' + i + '" class="item-trafico" eje="4" value="'+item.int4.toFixed(4)+'">' + item.int4.toFixed(4) + '</a></td>';
             tr += '<td>' + item.factorCamion.toFixed(3) + '</td>';
             tr += '<td>' + item.esal.toFixed(0) + '</td>';
 
@@ -215,4 +203,51 @@ function CargarTablaTrafico() {
     $('#Esals_Flexible').val(total.toFixed(0));
     
     document.getElementById("suma_esals").innerHTML = total.toFixed(0)
+    $('#Valores_factor_Equivalencia').hide();
 };
+function CargarTablaEquivalencia(div, data, title){
+    var tabla = $('<table id="tabla_factor_Equivalencia" width="100%" class="table table-bordered" border="1" cellspacing=0> \
+    <thead>\
+        <tr>\
+            <th class="text-center" colspan="7">' + title + '</th>\
+        </tr>\
+        <tr>\
+            <th>Kips</th>\
+            <th>Sn 1</th>\
+            <th>Sn 2</th>\
+            <th>Sn 3</th>\
+            <th>Sn 4</th>\
+            <th>Sn 5</th>\
+            <th>Sn 6</th>\
+        </tr>\
+    </thead>\
+    <tbody>\
+    </tbody>\
+</table>');
+
+    $(div).append(tabla);
+    var tbody = $(tabla).find('tbody');
+    
+    if (data.tabla != null) {
+        $(data.tabla).each(function(i, dfila) {
+            var tr = '<tr class="' + (data.finf == i || data.fsup == i ? 'info' : '') + '">'
+            $(dfila).each(function(j, dcol) {
+                tr += '<td class="' + (data.csn == j ? 'info' : '') + '">' + dcol + '</td>';
+            })
+            tr += '</tr>';
+            $(tbody).append(tr);
+            if (($(tabla).find("tr").hasClass("info")) || ($(tabla).find('td').hasClass("info"))) {
+                $(tabla).find('tr.info').css('background-color', "#c0e4fc");
+                $(tabla).find('td.info').css('background-color', "#c0e4fc");
+                $(tabla).find('tr.info td.info').css('background-color', "#008ED1");
+                $(tabla).find('tr.info td.info').css('color', "#FFFFFF");
+            }
+        });
+        $(div).append('<br>'+ data.descript + '<br>');
+        $(div).append(data.formulaVar + '<br>');
+        $(div).append(data.formula + '<br><br><br>');
+        $(div).css("text-align", "center");
+    }
+
+    
+}

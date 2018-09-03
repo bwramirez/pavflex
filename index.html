@@ -1582,7 +1582,7 @@
                                                                                 <div class="panel-body">
                                                                                     <table id="tabla_resultadosEsp" style="font-size: 10px">
                                                                                         <tr class="espesorAsfalto">
-                                                                                            <td width="150px">
+                                                                                            <td width="130px">
                                                                                                 Espesor de carpeta asfáltica
                                                                                             </td>
                                                                                             <td>
@@ -1590,6 +1590,12 @@
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
                                                                                                 <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                &nbsp;
+                                                                                            </td>
+                                                                                            <td id="diseñoEconomico_td">
+                                                                                                <input id="diseñoEconomico" type="checkbox"> Diseño económico
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr class="espesorBase">
@@ -1674,16 +1680,21 @@
                                                 <div class="panel with-nav-tabs">
                                                         <div class="col-md-12" style="text-align: right; font-family: arial">
                                                                 <ul class="nav nav-pills navbar-right">
-                                                                    <li>
-                                                                        
-                                                                    </li>
+                                                                    
                                                                     <li>
                                                                             <div class="liReporteUsuario">
                                                                                     
                                                                                     <button id="reporteUsuario" type="button" class="btn btn-warning btn-radius btn-sm "  onclick="imprimir()"><i class="fa fa-file-text"></i> &nbsp;Imprimir </button>
                                                                                         
                                                                         </div>
-                                                                    </li>                                                                    
+                                                                    </li> 
+                                                                    <li>
+                                                                        <div >
+                                                                                    
+                                                                            <button id="salirProcesos" type="button" class="btn btn-warning btn-radius btn-sm "  >Salir&nbsp;<i class="fa fa-close"></i>  </button>
+                                                                                
+                                                                </div>
+                                                                    </li>                                                                   
                                                                 </ul>
                                                             </div>
                                                         
@@ -1821,25 +1832,8 @@
                                                                         
 
                                                                         <section>
-                                                                            <div class="tab-content col-md-12">
-                                                                                <table id="tabla_factor_Equivalencia" width="100%" class="table table-bordered" style="display: none">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            <th class="text-center" colspan="7">Factores de equivalencia de carga</th>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <th>Kips</th>
-                                                                                            <th>SN 1</th>
-                                                                                            <th>SN 2</th>
-                                                                                            <th>SN 3</th>
-                                                                                            <th>SN 4</th>
-                                                                                            <th>SN 5</th>
-                                                                                            <th>SN 6</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                    </tbody>
-                                                                                </table>
+                                                                            <div id="Valores_factor_Equivalencia" class="tab-content col-md-12">
+                                                                                
                                                                                 
                                                                             </div>
 
@@ -2734,6 +2728,22 @@
                                                                                             <p id="calcRevisarSN_recal_asf" ></p>
 
                                                                                         </div>
+                                                                                    </div>
+                                                                                    <div id="recal_diseñoEconomico" style="text-align: center; display:none">
+                                                                                        <p style="font-weight: bold;" >Cálculos para diseño económico</p>
+                                                                                        <p style="text-align: justify">El diseño económico considera que generalmente el precio de la subbase es mucho menor que el precio de base o del asfálto, por ese motivo se adoptan los valores mínimos de espesor para estas capas y en función de ellas se recalcula el espesor de subbase. </p>
+                                                                                        <p id="diseño_eco_sn1_proces"></p>
+                                                                                        <p id="diseño_eco_sn1_result"></p>
+                                                                                        <p id="diseño_eco_snb_proces"></p>
+                                                                                        <p id="diseño_eco_snb_result"></p>
+                                                                                        <p id="diseño_eco_sn2_proces"></p>
+                                                                                        <p id="diseño_eco_sn2_result"></p>
+                                                                                        <p id="diseño_eco_snsb_proces"></p>
+                                                                                        <p id="diseño_eco_snsb_result"></p>
+                                                                                        <br>
+                                                                                        <p id="diseño_eco_d3_proces"></p>
+                                                                                        <p id="diseño_eco_d3_result"></p>
+
                                                                                     </div>
                                                                                     
 

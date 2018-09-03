@@ -1,3 +1,4 @@
+$(document).ready(function () { });
 //Número estructural SN								
 //(sn)	1	2	3	4	5	6	
 var tablaEqui2s = Array(
@@ -457,7 +458,8 @@ function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
 
         if (iinf == isup) {
             var value = tabla[iinf][colSn];
-            var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': value };
+            var frm = jQuery.validator.format("Fe = {0}", value);
+            var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': value, 'formula': frm };
             //return tabla[iinf][colSn];
             return r;
         } else {
@@ -469,8 +471,11 @@ function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
 
             var eqv = kdif * edif / 2;
             var rst = eqv + einf;
-
-            var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': rst };
+            var result_fe = rst.toFixed(4);
+            var descript = jQuery.validator.format("{0}", "Con el rango indicado en la tabla se efectúa una interpolación entre los pesos del eje y los factores de equivalencia");
+            var form = jQuery.validator.format("Fe = {0} + [({1} - {2}) * ({3} - {4}) / ({5} - {6})]", "Fe<SUB>inf</SUB>", "Peso del eje", "Peso del eje<SUB>inf</SUB>", "Fe<SUB>sup</SUB>", "Fe<SUB>inf</SUB>", "Peso del eje<SUB>sup</SUB>", "Peso del eje<SUB>inf</SUB>" );
+            var frm = jQuery.validator.format("Fe = {0} + [({1} - {2}) * ({3} - {4}) / ({5} - {6})] = {7}", einf, kips, tabla[iinf][0], esup, einf, tabla[isup][0], tabla[iinf][0], result_fe );
+            var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': rst, 'descript': descript, 'formulaVar': form,  'formula': frm  };
             
             return r;
             

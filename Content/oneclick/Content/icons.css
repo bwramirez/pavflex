@@ -30,8 +30,11 @@
 }
 
 .fa-file-text {
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);    
     
+}
+.fa-close {
+    color: rgb(255, 255, 255);    
     
 }
 
@@ -637,6 +640,12 @@ input[type=text] {
     padding: 0px;
 }
 #FlotaVehiculo th {
+    vertical-align: middle;
+    text-align: center;
+    padding: 0px;
+}
+
+#diseñoEconomico_td {
     vertical-align: middle;
     text-align: center;
     padding: 0px;
