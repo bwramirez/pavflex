@@ -1,7 +1,7 @@
 $(document).ready(function () { });
 //Número estructural SN								
 //(sn)	1	2	3	4	5	6	
-var tablaEqui2s = Array(
+var tablaEqui2s_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002),
     Array(4, 0.002, 0.003, 0.002, 0.002, 0.002, 0.002),
@@ -32,7 +32,7 @@ var tablaEqui2s = Array(
 
 );
 
-var tablaEqui25s = Array(
+var tablaEqui25s_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0.0004, 0.0004, 0.0003, 0.0002, 0.0002, 0.0002),
     Array(4, 0.003, 0.004, 0.004, 0.003, 0.002, 0.002),
@@ -62,7 +62,7 @@ var tablaEqui25s = Array(
 
 );
 
-var tablaEqui3s = Array(
+var tablaEqui3s_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0.0008, 0.0009, 0.0006, 0.0003, 0.0002, 0.0002),
     Array(4, 0.004, 0.008, 0.006, 0.004, 0.002, 0.002),
@@ -93,7 +93,7 @@ var tablaEqui3s = Array(
 
 );
 
-var tablaEqui2ta = Array(
+var tablaEqui2ta_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0, 0, 0, 0, 0, 0),
     Array(4, 0.0003, 0.0003, 0.0003, 0.0002, 0.0002, 0.0002),
@@ -143,7 +143,7 @@ var tablaEqui2ta = Array(
 
 );
 
-var tablaEqui25ta = Array(
+var tablaEqui25ta_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0.0001, 0.0001, 0.0001, 0, 0, 0),
     Array(4, 0.0005, 0.0005, 0.0004, 0.0003, 0.0003, 0.002),
@@ -193,7 +193,7 @@ var tablaEqui25ta = Array(
 
 );
 
-var tablaEqui3ta = Array(
+var tablaEqui3ta_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0.0002, 0.0002, 0.0001, 0.0001, 0, 0),
     Array(4, 0.001, 0.001, 0.001, 0, 0, 0),
@@ -243,7 +243,7 @@ var tablaEqui3ta = Array(
 
 );
 
-var tablaEqui2tr = Array(
+var tablaEqui2tr_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0, 0, 0, 0, 0, 0),
     Array(4, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001),
@@ -293,7 +293,7 @@ var tablaEqui2tr = Array(
 
 );
 
-var tablaEqui25tr = Array(
+var tablaEqui25tr_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0, 0, 0, 0, 0, 0),
     Array(4, 0.0002, 0.0002, 0.0002, 0.0001, 0.0001, 0.0001),
@@ -344,7 +344,7 @@ var tablaEqui25tr = Array(
 
 );
 
-var tablaEqui3tr = Array(
+var tablaEqui3tr_flex = Array(
     Array(0, 0, 0, 0, 0, 0, 0),
     Array(2, 0.0001, 0.0001, 0.0001, 0, 0, 0),
     Array(4, 0.0005, 0.0004, 0.0003, 0.0002, 0.0001, 0.0001),
@@ -396,14 +396,14 @@ var tablaEqui3tr = Array(
 
 
 
-function ObtnerTablaEquivalenciaCarga(pt, tipoEje) {
+function ObtnerTablaF_Equivalencia(pt, tipoEje) {
 
     //Tabla de equivalencias
-    var eqvTabla = Array({ pt: 2, tipoEje: 1, tabla: tablaEqui2s }, { pt: 2.5, tipoEje: 1, tabla: tablaEqui25s }, { pt: 3, tipoEje: 1, tabla: tablaEqui3s },
+    var eqvTabla = Array({ pt: 2, tipoEje: 1, tabla: tablaEqui2s_flex }, { pt: 2.5, tipoEje: 1, tabla: tablaEqui25s_flex }, { pt: 3, tipoEje: 1, tabla: tablaEqui3s_flex },
 
-        { pt: 2, tipoEje: 2, tabla: tablaEqui2ta }, { pt: 2.5, tipoEje: 2, tabla: tablaEqui25ta }, { pt: 3, tipoEje: 2, tabla: tablaEqui3ta },
+        { pt: 2, tipoEje: 2, tabla: tablaEqui2ta_flex }, { pt: 2.5, tipoEje: 2, tabla: tablaEqui25ta_flex }, { pt: 3, tipoEje: 2, tabla: tablaEqui3ta_flex },
 
-        { pt: 2, tipoEje: 3, tabla: tablaEqui2tr }, { pt: 2.5, tipoEje: 3, tabla: tablaEqui25tr }, { pt: 3, tipoEje: 3, tabla: tablaEqui3tr },
+        { pt: 2, tipoEje: 3, tabla: tablaEqui2tr_flex }, { pt: 2.5, tipoEje: 3, tabla: tablaEqui25tr_flex }, { pt: 3, tipoEje: 3, tabla: tablaEqui3tr_flex },
 
     );
 
@@ -419,33 +419,12 @@ function ObtnerTablaEquivalenciaCarga(pt, tipoEje) {
     return tabla;
 };
 
-function ObtenerInterpolacion(pt, tipoEje, kips, sn) {
-    /* if (pt > 2.5) {
-        var pt_inf = 2.5;
-        var pt_sup = 3;
 
-        return ObtenerInterpolacionInfSup(pt, pt_inf, pt_sup, tipoEje, kips, sn);
-    } else if (pt > 2 && pt < 2.5) {
-        var pt_inf = 2;
-        var pt_sup = 2.5;
 
-        return ObtenerInterpolacionInfSup(pt, pt_inf, pt_sup, tipoEje, kips, sn);
-    } else {
-        return ObtenerInterpolacionBase(pt, tipoEje, kips, sn);
-    }*/
-    return ObtenerInterpolacionBase(pt, tipoEje, kips, sn);
-}
 
-function ObtenerInterpolacionInfSup(pt, pt_inf, pt_sup, tipoEje, kips, sn) {
-    var f_inf = ObtenerInterpolacionBase(pt_inf, tipoEje, kips, sn);
-    var f_sup = ObtenerInterpolacionBase(pt_sup, tipoEje, kips, sn);
-    var r = (((pt - pt_inf) * (f_sup - f_inf)) / 0.5) + f_inf;
-    
-    return r;
-}
 
 function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
-    var tabla = ObtnerTablaEquivalenciaCarga(pt, tipoEje);
+    var tabla = ObtnerTablaF_Equivalencia(pt, tipoEje);
 
     if (tabla != null) {
 
@@ -458,8 +437,11 @@ function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
 
         if (iinf == isup) {
             var value = tabla[iinf][colSn];
+            var descript = jQuery.validator.format("{0}", "Al ser un valor de la tabla no se debe realizar interpolación");
             var frm = jQuery.validator.format("Fe = {0}", value);
-            var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': value, 'formula': frm };
+            var form = jQuery.validator.format("Fe = {0}", value);
+            
+            var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': value, 'descript': descript, 'formulaVar': form,  'formula': frm  };
             //return tabla[iinf][colSn];
             return r;
         } else {
@@ -473,8 +455,8 @@ function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
             var rst = eqv + einf;
             var result_fe = rst.toFixed(4);
             var descript = jQuery.validator.format("{0}", "Con el rango indicado en la tabla se efectúa una interpolación entre los pesos del eje y los factores de equivalencia");
-            var form = jQuery.validator.format("Fe = {0} + [({1} - {2}) * ({3} - {4}) / ({5} - {6})]", "Fe<SUB>inf</SUB>", "Peso del eje", "Peso del eje<SUB>inf</SUB>", "Fe<SUB>sup</SUB>", "Fe<SUB>inf</SUB>", "Peso del eje<SUB>sup</SUB>", "Peso del eje<SUB>inf</SUB>" );
-            var frm = jQuery.validator.format("Fe = {0} + [({1} - {2}) * ({3} - {4}) / ({5} - {6})] = {7}", einf, kips, tabla[iinf][0], esup, einf, tabla[isup][0], tabla[iinf][0], result_fe );
+            var frm = jQuery.validator.format("Fe = {0} + [({1} - {2}) * ({3} - {4}) / ({5} - {6})]", einf, kips, tabla[iinf][0], esup, einf, tabla[isup][0], tabla[iinf][0]);
+            var form = jQuery.validator.format("Fe = {0}", result_fe );
             var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': rst, 'descript': descript, 'formulaVar': form,  'formula': frm  };
             
             return r;

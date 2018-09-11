@@ -46,7 +46,7 @@ function espAsfalto() {
                     label: function (item, data) {
                         var datasetLabel = data.datasets[item.datasetIndex].label || '';
                         var dataPoint = data.datasets[item.datasetIndex].data[item.index];
-                        return datasetLabel + " " + ':  ' + item.yLabel + " " + 'plg ';
+                        return datasetLabel + " " + ':  ' + item.yLabel + " " + 'in ';
                     }
                 },
             },
@@ -103,7 +103,7 @@ function espAsfalto() {
 
     var e1 = {
         y: document.getElementById("espesor_asfalto_recomendado").value,
-        r: "Carpeta asfáltica" + " = " + document.getElementById("espesor_asfalto_recomendado").value + "" + " plg"
+        r: "Carpeta asfáltica" + " = " + document.getElementById("espesor_asfalto_recomendado").value + "" + " in"
     };
     window.myChartespAsfalto.data.datasets[0].data[0, 0] = e1;
 

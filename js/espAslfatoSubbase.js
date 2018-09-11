@@ -65,7 +65,7 @@ function espAsfSubbase() {
                     label: function(item, data) {
                         var datasetLabel = data.datasets[item.datasetIndex].label || '';
                         var dataPoint = data.datasets[item.datasetIndex].data[item.index];
-                        return datasetLabel + " " + ':  ' + item.yLabel + " " + 'plg ';
+                        return datasetLabel + " " + ':  ' + item.yLabel + " " + 'in ';
                     }
                 },
             },
@@ -120,10 +120,10 @@ function espAsfSubbase() {
         }
     });
 
-    var e1 = { y: document.getElementById("espesor_subbase_recomendado").value, r: "Subbase" + " = " + document.getElementById("espesor_subbase_recomendado").value + "" + " plg" };
+    var e1 = { y: document.getElementById("espesor_subbase_recomendado").value, r: "Subbase" + " = " + document.getElementById("espesor_subbase_recomendado").value + "" + " in" };
     window.myChartespAsfSubbase.data.datasets[0].data[0, 0] = e1;
             
-            var e3 = { y: document.getElementById("espesor_asfalto_recomendado").value, r: "Carpeta asfáltica" + " = " + document.getElementById("espesor_asfalto_recomendado").value + "" + " plg" };
+            var e3 = { y: document.getElementById("espesor_asfalto_recomendado").value, r: "Carpeta asfáltica" + " = " + document.getElementById("espesor_asfalto_recomendado").value + "" + " in" };
             window.myChartespAsfSubbase.data.datasets[1].data[0, 0] = e3;
     
             window.myChartespAsfSubbase.update();

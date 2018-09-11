@@ -58,7 +58,7 @@ function clc_coeficiente_m2() {
 
         }
 
-    } else if ((drencalidad == "Buena ( 1 día)")) {
+    } else if ((drencalidad == "Buena (1 día)")) {
         $('#Buena').css('background-color', "#c0e4fc");
         if ((0 <= drenporcent) && (drenporcent <= 1)) {
             $('.01').css('background-color', "#c0e4fc");
@@ -268,7 +268,7 @@ function clc_coeficiente_m3() {
 
         }
 
-    } else if ((drencalidadm3 == "Buena ( 1 día)")) {
+    } else if ((drencalidadm3 == "Buena (1 día)")) {
         $('#Buenasb').css('background-color', "#c0e4fc");
         if ((0 <= drenporcentm3) && (drenporcentm3 <= 1)) {
             $('.01_subbase').css('background-color', "#c0e4fc");

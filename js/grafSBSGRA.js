@@ -574,7 +574,7 @@ function loadGraphSubbaseGranular() {
     var txtesbs = $('#subbase_caracteristicas_td').text();
     var sbsgrafi = $('#coord_x_subbase_graf').text();
 
-    if ((txtesbs == "CBR")) {
+    if ((txtesbs == "CBR (%)")) {
         $('#coord_x_subbase_graf').val(2);
         if ((5 <= prosbs) && (prosbs <= 100)) {
             var grafcbr = polino8(22.8778595721814, 4.19610502920113, -0.410012855543755, 0.0237859235421638, -0.00076540805116565, 0.0000141485623412763, -0.000000150246627833583, 0.000000000853741438221894, -0.00000000000201383566279697, (prosbs - 5))

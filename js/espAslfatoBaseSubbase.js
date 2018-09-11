@@ -102,7 +102,7 @@ function espAsfBaseSubbase() {
                     label: function (item, data) {
                         var datasetLabel = data.datasets[item.datasetIndex].label || '';
                         var dataPoint = data.datasets[item.datasetIndex].data[item.index];
-                        return datasetLabel + " " + ':  ' + item.yLabel + " " + 'plg ';
+                        return datasetLabel + " " + ':  ' + item.yLabel + " " + 'in ';
                     }
                 },
             },
@@ -158,17 +158,17 @@ function espAsfBaseSubbase() {
     });
     var e1 = {
         y: document.getElementById("espesor_subbase_recomendado").value,
-        r: "Subbase" + " = " + document.getElementById("espesor_subbase_recomendado").value + "" + " plg"
+        r: "Subbase" + " = " + document.getElementById("espesor_subbase_recomendado").value + "" + " in"
     };
     window.myChart12.data.datasets[0].data[0, 0] = e1;
     var e2 = {
         y: document.getElementById("espesor_base_recomendado").value,
-        r: "Base" + " = " + document.getElementById("espesor_base_recomendado").value + "" + " plg"
+        r: "Base" + " = " + document.getElementById("espesor_base_recomendado").value + "" + " in"
     };
     window.myChart12.data.datasets[1].data[0, 0] = e2;
     var e3 = {
         y: document.getElementById("espesor_asfalto_recomendado").value,
-        r: "Carpeta asfáltica" + " = " + document.getElementById("espesor_asfalto_recomendado").value + "" + " plg"
+        r: "Carpeta asfáltica" + " = " + document.getElementById("espesor_asfalto_recomendado").value + "" + " in"
     };
     window.myChart12.data.datasets[2].data[0, 0] = e3;
 

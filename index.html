@@ -12,9 +12,9 @@
     <script src="./Content/oneclick/Scripts/jquery/jquery-3.1.1.js"></script>
     <script src="./Content/oneclick/Scripts/bootstrap/bootstrap.min.js"></script>
     <script src="./Content/oneclick/Scripts/jquery/jquery-ui-1.11.4.min.js"></script>
-    <script src="./Content/oneclick/Scripts/jquery/jquery.validate.min.js"></script>
-    <script src="./Content/oneclick/Scripts/jquery/messages_es.min.js"></script>
-    <script src="./Content/oneclick/Scripts/jquery/jquery.validate.unobtrusive.min.js"></script>
+    
+    
+
     <script src="./Content/oneclick/Scripts/jquery/jquery.unobtrusive-ajax.min.js"></script>
 
 
@@ -37,6 +37,8 @@
 
 
     <!-- Lógica programa -->
+    <script src="./js/jquery.validate.min.js"></script>
+    <script src="./Content/oneclick/Scripts/jquery/messages_es.min.js"></script>
     <script src="./js/autoNumeric.min.js"></script>
     <script src="./js/Chart.js"></script>
     <script src="./js/app.js"></script>
@@ -115,6 +117,7 @@
                                                 <div class="panel with-nav-tabs">
                                                     <div class="col-md-12">
                                                         <ul class="nav nav-pills navbar-right">
+                                                            
                                                             <li>
                                                                     <div class="liBtnEjemplo">
                                                                             <span class="tipBtnEjemplo"> <section class="sctEjemplo"> <p style="font-size: 11px; width: 350px; height: 15px; vertical-align: middle"> Al dar clic se cargarán valores predeterminados de entrada</p></section></span>
@@ -316,9 +319,9 @@
 
                                                                                     <table style="font-size: 10px">
                                                                                         <tr>
-                                                                                            <td>Serviciabilidad inicial (pi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                            <td>Serviciabilidad inicial - pi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                             <td>
-                                                                                                <input class="form-control form-control-sm numeric2 required" type='text' name='pi' id='pi' placeholder="Ingrese valor" onkeyup="serviciabilidad()">
+                                                                                                <input name='pi' id='pi' class="form-control form-control-sm numeric2" type='text' placeholder="Ingrese valor" onkeyup="serviciabilidad()">
                                                                                             </td>
                                                                                             <td>
                                                                                                 &nbsp;&nbsp;&nbsp;
@@ -368,9 +371,9 @@
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Serviciabilidad final (pf)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                            <td>Serviciabilidad final - pf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                             <td>
-                                                                                                <input class="form-control form-control-sm xnum numeric2" type='text' name='pf' id='pf' placeholder="Ingrese valor" onkeyup="serviciabilidad()" onchange="copyPf();">
+                                                                                                <input name='pf' id='pf' class="form-control form-control-sm xnum numeric2" type='text' placeholder="Ingrese valor" onkeyup="serviciabilidad()" onchange="copyPf();">
                                                                                             </td>
                                                                                             <td>
                                                                                                 &nbsp;&nbsp;&nbsp;
@@ -421,7 +424,7 @@
                                                                                         </tr>
 
                                                                                         <tr>
-                                                                                            <td>Índice de serviciabilidad (Δpsi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                            <td>Índice de serviciabilidad - Δpsi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                             <td>
                                                                                                 <input class="form-control form-control-sm numeric2" type='text' name='psi' id='psi' disabled='true'>
                                                                                             </td>
@@ -449,25 +452,25 @@
                                                                                         <tr>
                                                                                             <td>Factor de confiabilidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                             <td>
-                                                                                                <select name="tipoConfiabilidad" id="tipoConfiabilidad"  onchange="selectConfiabilidad(); valueConfiabilidad()">
+                                                                                                <select name="tipoConfiabilidad" id="tipoConfiabilidad" class="form-control"  onchange="selectConfiabilidad(); valueConfiabilidad()">
                                                                                                     <option>Confiabilidad (R)</option>
-                                                                                                    <option value="-0.000">50% </option>
-                                                                                                    <option value="-0.253">60% </option>
-                                                                                                    <option value="-0.524">70% </option>
-                                                                                                    <option value="-0.841">80% </option>
-                                                                                                    <option value="-1.037">85% </option>
-                                                                                                    <option value="-1.282">90% </option>
-                                                                                                    <option value="-1.340">91% </option>
-                                                                                                    <option value="-1.405">92% </option>
-                                                                                                    <option value="-1.476">93% </option>
-                                                                                                    <option value="-1.555">94% </option>
-                                                                                                    <option value="-1.645">95% </option>
-                                                                                                    <option value="-1.751">96% </option>
-                                                                                                    <option value="-1.881">97% </option>
-                                                                                                    <option value="-2.054">98% </option>
-                                                                                                    <option value="-2.327">99% </option>
-                                                                                                    <option value="-3.090">99.9% </option>
-                                                                                                    <option value="-3.750">99.99% </option>
+                                                                                                    <option value="-0.000">50%</option>
+                                                                                                    <option value="-0.253">60%</option>
+                                                                                                    <option value="-0.524">70%</option>
+                                                                                                    <option value="-0.841">80%</option>
+                                                                                                    <option value="-1.037">85%</option>
+                                                                                                    <option value="-1.282">90%</option>
+                                                                                                    <option value="-1.340">91%</option>
+                                                                                                    <option value="-1.405">92%</option>
+                                                                                                    <option value="-1.476">93%</option>
+                                                                                                    <option value="-1.555">94%</option>
+                                                                                                    <option value="-1.645">95%</option>
+                                                                                                    <option value="-1.751">96%</option>
+                                                                                                    <option value="-1.881">97%</option>
+                                                                                                    <option value="-2.054">98%</option>
+                                                                                                    <option value="-2.327">99%</option>
+                                                                                                    <option value="-3.090">99.9%</option>
+                                                                                                    <option value="-3.750">99.99%</option>
                                                                                                 </select>
 
                                                                                             </td>
@@ -576,13 +579,14 @@
                                                                                         </tr>
 
                                                                                         <tr>
-                                                                                            <td>Desviación normal estándar (Zr)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                            <td>Desviación normal estándar - Zr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                             <td>
                                                                                                 <input id="ZrFlexible" class="form-control form-control-sm " type="text" disabled='true'>
                                                                                             </td>
                                                                                             <td style="display:none">
                                                                                                 <input id="valorConfiabilidad" class="form-control form-control-sm" type="text" disabled='true'>
                                                                                             </td>
+                                                                                            
 
                                                                                         </tr>
                                                                                         <tr>
@@ -600,135 +604,23 @@
                                                                         <div class="col-md-4" style="height: 0;"></div>
                                                                         <!--Tráfico-->
                                                                         <div class="col-md-4 cg" style="height: 80px;">
-                                                                            <section id="contenedorSecundarioFlexible" class=" panel panel-default" style="height: 70px;">
+                                                                            <section id="contenedorSecundarioFlexible" class="panel panel-default" style="height: 70px;">
 
                                                                                 <div id="tituloContenedorSecundario" class="panel-heading">
                                                                                     <strong>Parámetro de tráfico </strong>&nbsp;&nbsp;&nbsp;
                                                                                     <a id="principalTrafico" href="#procesoTrafico">
                                                                                         <span style="display: none" id="fa-arrow-circle-right" class="fa fa-arrow-circle-right right-proceso"></span>
                                                                                     </a>
+                                                                                    
                                                                                 </div>
 
                                                                                 <div style="height: 50px;" class="panel-body">
-                                                                                    <div id="myModal" class="modal fade col-md-12" role="dialog">
-                                                                                        <div class="modal-dialog" id="modalCatalogo">
-
-                                                                                            <!-- Modal content-->
-                                                                                            <div class="modal-content">
-                                                                                                <div class="modal-header">
-                                                                                                    <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                                                    <h4 style="text-align:center;" class="modal-title"><strong> Parámetros de tráfico</strong></h4>
-                                                                                                    
-                                                                                                    <div class="liBtnClcESALS" style="width: 75px">
-                                                                                                            <span class="tipBtnClcESALS"> <section class="sctClcESALS"> <p style="font-size: 11px; width: 140px; height: 35px; vertical-align: middle"> Calcular el número de ejes equivalentes</p></section></span>
-                                                                                                            <input align='right' id="load-Vehiculos" type="button" value=Calcular class="btn btn-warning btn-radius btn-sm">
-                                                                                                            
-                                                                                                    </div>
-
-                                                                                                </div>
-                                                                                                <div class="modal-body">
-                                                                                                    <section id="datosESALS" class="tab-content col-md-12" style="padding-bottom: 20px;">
-                                                                                                        <table style="font-size: 12px" id="parametrosESALS">
-                                                                                                            <tr>
-                                                                                                                <td>Tráfico medio diario anual (veh/día)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                                                </td>
-                                                                                                                <td>
-                                                                                                                    <input class="form-control form-control-sm required integer" id="traficoTMDAflexible" class="form-control form-control-sm" type="text"
-                                                                                                                        placeholder="Ingrese valor (veh/día)">
-                                                                                                                </td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td>Tasa de crecimiento vehicular (%)
-                                                                                                                </td>
-                                                                                                                <td>
-                                                                                                                    <input class="form-control form-control-sm required numeric2" id="traficoTasa_CreFlexible" class="form-control form-control-sm" type="text" placeholder="Ingrese valor (%)" onkeyup="restrictionPorcentaje ()"> 
-                                                                                                                </td>
-
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td>Periodo de diseño (años)
-                                                                                                                </td>
-                                                                                                                <td>
-                                                                                                                    <input class="form-control form-control-sm required integer" id="traficoPeriodo_diseñoFlexible" class="form-control form-control-sm" type="text" placeholder="Ingrese valor (Años)"> 
-                                                                                                                </td>
-
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td>Direccionalidad (%)
-                                                                                                                </td>
-                                                                                                                <td>
-                                                                                                                    <input class="form-control form-control-sm required numeric2" id="traficoDireccionalidadFlexible" class="form-control form-control-sm" type="text" placeholder="Ingrese valor (%)" onkeyup="restrictionPorcentaje ()"> 
-                                                                                                                </td>
-
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td>Serviciabilidad final (pt)
-                                                                                                                </td>
-                                                                                                                <td>
-                                                                                                                    <select id="trafico_ptFlexible" name="trafico_ptFlexible" class="form-control form-control-sm required" placeholder="Ingrese valor">
-                                                                                                                        <option value="">--Seleccione--</option>
-                                                                                                                        <option value="2">2</option>
-                                                                                                                        <option value="2.5">2.5</option>
-                                                                                                                        <option value="3">3</option>
-                                                                                                                    </select>
-                                                                                                                </td>
-
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td>Número estructural (SN)
-                                                                                                                </td>
-                                                                                                                <td>
-                                                                                                                    <select id="traficoSN_Flexible" name="traficoSN_Flexible" class="form-control form-control-sm required" placeholder="Ingrese valor">
-                                                                                                                        <option value="">--Seleccione--</option>
-                                                                                                                        <option value="1">1</option>
-                                                                                                                        <option value="2">2</option>
-                                                                                                                        <option value="3">3</option>
-                                                                                                                        <option value="4">4</option>
-                                                                                                                        <option value="5">5</option>
-                                                                                                                        <option value="6">6</option>
-                                                                                                                    </select>
-                                                                                                                </td>
-
-                                                                                                            </tr>
-                                                                                                        </table>
-                                                                                                    </section>
-                                                                                                    <br>
-
-                                                                                                    <table id="FlotaVehiculo" style="font-size: 12px" class="table table-borderless table-hover table-responsive table-bordered table-condensed " border="5">
-
-                                                                                                        <thead>
-                                                                                                            <tr>
-                                                                                                                <th colspan="5" style="height: 40px;">
-                                                                                                                    <h5 style="text-align:center;" class="modal-title">
-                                                                                                                        <strong>Table Ecuatoriana de vehículos</strong>
-                                                                                                                    </h5>
-                                                                                                                </th>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <th colspan="2" width="80px">
-                                                                                                                    Tipo de vehículo
-                                                                                                                </th>
-                                                                                                                <th colspan="2">
-                                                                                                                    Descripción
-                                                                                                                </th>
-                                                                                                                <th width="30px" height="40px">
-                                                                                                                    Porcentaje de flota vehicular
-                                                                                                                </th>
-                                                                                                            </tr>
-                                                                                                        </thead>
-                                                                                                        <tbody>
-                                                                                                        </tbody>
-                                                                                                    </table>
-
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    
                                                                                     <table style="font-size: 10px">
                                                                                         <tr>
-                                                                                            <td style="width: 150px">Número de ejes equivalentes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                            <td style="width: 180px">Número de ejes equivalentes (ESAL´S)</td>
                                                                                             <td>
-                                                                                                <input id="Esals_Flexible" class="form-control form-control-sm integer" type="text" placeholder="Ingrese valor">
+                                                                                                <input name="Esals_Flexible" id="Esals_Flexible" class="form-control form-control-sm integer" type="text" placeholder="Ingrese valor">
                                                                                             </td>
                                                                                             <td>
                                                                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -736,8 +628,10 @@
                                                                                             <td>
                                                                                                 <input id="clcESALS" type="button" value=Calcular class="btn btn-warning btn-radius btn-sm" data-toggle="modal" data-target="#myModal">
                                                                                             </td>
+                                                                                            
                                                                                         </tr>
                                                                                     </table>
+                                                                                    
 
                                                                                 </div>
                                                                             </section>
@@ -752,10 +646,10 @@
                                                                                 <div style="height: 50px;" class="panel-body">
                                                                                     <table style="font-size: 10px">
                                                                                         <tr>
-                                                                                            <td>Desviación estándar (So)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                            <td>Desviación estándar - So&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                                             </td>
                                                                                             <td>
-                                                                                                <input class="form-control form-control-sm numeric2" type="text" placeholder="Ingrese valor" id="So_Flexible">
+                                                                                                <input name="So_Flexible" id="So_Flexible" class="form-control form-control-sm numeric2" type="text" placeholder="Ingrese valor" >
 
                                                                                             </td>
                                                                                             <td>
@@ -873,12 +767,12 @@
                                                                                             <tr id="base_caracteristicas_tr">
                                                                                                 <td id="base_caracteristicas_td">(Seleccionar)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                 <td>
-                                                                                                    <input class="form-control form-control-sm numeric2" type='text' id='base_caracteristicas' placeholder="Ingrese valor" onchange="basePropiedad();">
+                                                                                                    <input name='base_caracteristicas' id='base_caracteristicas' class="form-control form-control-sm numeric2" type='text' placeholder="Ingrese valor" onchange="basePropiedad();">
                                                                                                 </td>
                                                                                             </tr>
 
                                                                                             <tr>
-                                                                                                <td style="width: 150px">Coeficiente estructural (a<SUB>2</SUB>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                                <td style="width: 150px">Coeficiente estructural - a<SUB>2</SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                 <td>
                                                                                                     <input class="form-control form-control-sm" type='text' name='a2' id='a2' disabled='true'>
                                                                                                 </td>
@@ -888,7 +782,7 @@
                                                                                             </tr>
 
                                                                                             <tr>
-                                                                                                <td>Módulo resiliente (Mb)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                                <td>Módulo resiliente - Mb (psi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                 <td>
                                                                                                     <input class="form-control form-control-sm" type='text' name='Mb' id='Mb' disabled='true'>
                                                                                                 </td>
@@ -930,10 +824,10 @@
                                                                                                 <tr>
                                                                                                     <td style="width:220px;"> Calidad del drenaje&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                     <td style="width:210px;">
-                                                                                                        <select id="select_drenaje_base" class="form-control" onchange="clc_coeficiente_m2(); copyDrenaje();">
+                                                                                                        <select name="select_drenaje_base" id="select_drenaje_base" class="form-control" onchange="clc_coeficiente_m2(); copyDrenaje();">
                                                                                                             <option>(Seleccionar)</option>
                                                                                                             <option>Excelente (2 horas)</option>
-                                                                                                            <option>Buena ( 1 día)</option>
+                                                                                                            <option>Buena (1 día)</option>
                                                                                                             <option>Aceptable (1 semana)</option>
                                                                                                             <option>Pobre (1 mes)</option>
                                                                                                             <option>Muy pobre (el agua no drena)</option>
@@ -1000,7 +894,7 @@
                                                                                                                         </tr>
                                                                                                                         <tr>
                                                                                                                             <td style="width:120px;">
-                                                                                                                                Buena ( 1 día)
+                                                                                                                                Buena (1 día)
                                                                                                                             </td>
                                                                                                                             <td  style="width:100px;">
                                                                                                                                 1.35 - 1.25
@@ -1077,16 +971,16 @@
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td style="width:220px;">Porcentaje de humedad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                    <td style="width:220px;">Porcentaje de humedad (%)
                                                                                                     </td>
                                                                                                     <td style="width:210px;">
-                                                                                                        <input class="form-control form-control-sm numeric2" type='text' name='porcentaje_humedad_m2' id='porcentaje_humedad_m2' placeholder="Ingrese valor" onkeyup="clc_coeficiente_m2(); copyDrenaje()">
+                                                                                                        <input name='porcentaje_humedad_m2' id='porcentaje_humedad_m2' class="form-control form-control-sm numeric2" type='text'  placeholder="Ingrese valor" onkeyup="clc_coeficiente_m2(); copyDrenaje()">
                                                                                                     </td>
                                                                                                 </tr>
 
                                                                                                 <tr>
                                                                                                     <td style="width:220px;">
-                                                                                                        Coeficiente de drenaje de base (m<SUB>2</SUB>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                                        Coeficiente de drenaje - m<SUB>2</SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                     <td style="width:210px;">
                                                                                                         <input class="form-control form-control-sm" type='text' name='m2' id='m2' disabled='true'>
                                                                                                     </td>
@@ -1141,12 +1035,12 @@
                                                                                             <tr id="subbase_caracteristicas_tr">
                                                                                                 <td id="subbase_caracteristicas_td">(Seleccionar)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                 <td>
-                                                                                                    <input class="form-control form-control-sm numeric2" type='text' id='subbase_caracteristicas' placeholder="Ingrese valor" onchange="subbaseprop()">
+                                                                                                    <input id='subbase_caracteristicas' id='subbase_caracteristicas' class="form-control form-control-sm numeric2" type='text'  placeholder="Ingrese valor" onchange="subbaseprop()">
                                                                                                 </td>
 
                                                                                             </tr>
                                                                                             <tr>
-                                                                                                <td style="width: 150px">Coeficiente estructural (a<SUB>3</SUB>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                                <td style="width: 150px">Coeficiente estructural - a<SUB>3</SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                 <td>
                                                                                                     <input class="form-control form-control-sm" type='text' name='a3' id='a3' disabled='true'>
 
@@ -1161,7 +1055,7 @@
 
                                                                                             </tr>
                                                                                             <tr>
-                                                                                                <td>Módulo resiliente (Msb)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                                <td>Módulo resiliente - Msb (psi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                 <td>
                                                                                                     <input class="form-control form-control-sm" type='text' name='Msb' id='Msb' disabled='true'>
                                                                                                 </td>
@@ -1209,7 +1103,7 @@
                                                                                                         <select id="select_drenaje_subbase" class="form-control" onchange="clc_coeficiente_m3();">
                                                                                                             <option>(Seleccionar)</option>
                                                                                                             <option>Excelente (2 horas)</option>
-                                                                                                            <option>Buena ( 1 día)</option>
+                                                                                                            <option>Buena (1 día)</option>
                                                                                                             <option>Aceptable (1 semana)</option>
                                                                                                             <option>Pobre (1 mes)</option>
                                                                                                             <option>Muy pobre (el agua no drena)</option>
@@ -1276,7 +1170,7 @@
                                                                                                                         </tr>
                                                                                                                         <tr>
                                                                                                                             <td style="width:120px;">
-                                                                                                                                Buena ( 1 día)
+                                                                                                                                Buena (1 día)
                                                                                                                             </td>
                                                                                                                             <td  style="width:100px;">
                                                                                                                                 1.35 - 1.25
@@ -1354,7 +1248,7 @@
 
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td style="width:220px;">Porcentaje de humedad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                    <td style="width:220px;">Porcentaje de humedad (%)
                                                                                                     </td>
                                                                                                     <td style="width:210px;">
                                                                                                         <input class="form-control form-control-sm numeric2" type='text' name='porcentaje_humedad_m3' id='porcentaje_humedad_m3' placeholder="Ingrese valor"
@@ -1364,7 +1258,7 @@
 
                                                                                                 <tr>
                                                                                                     <td style="width:220px;">
-                                                                                                        Coeficiente de drenaje de subbase (m<SUB>3</SUB>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                                        Coeficiente de drenaje - m<SUB>3</SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                                     <td style="width:210px;">
                                                                                                         <input class="form-control form-control-sm" type='text' name='m3' id='m3' disabled='true'>
                                                                                                     </td>
@@ -1392,14 +1286,14 @@
                                                                         <section class="caracteristicas_subrasante" id="caracteristicas_subrasante">
                                                                             <table style="font-size: 10px">
                                                                                 <tr id="subrasante_caracteristicas_tr">
-                                                                                    <td id="subrasante_caracteristicas_td">CBR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                    <td id="subrasante_caracteristicas_td">CBR (%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                     <td>
                                                                                         <input class="form-control form-control-sm numeric2" type='text' id='subrasante_caracteristicas_flexible' placeholder="Ingrese valor" onchange="mrcalular()">
                                                                                     </td>
 
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td>Módulo resiliente (Mr)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                    <td>Módulo resiliente - Mr (psi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                     <td>
                                                                                         <input class="form-control form-control-sm numeric2" type='text' name='Mr' id='Mr' placeholder="Ingrese valor">
                                                                                     </td>
@@ -1425,13 +1319,13 @@
                                                                         <section class="caracteristica_asfalto" id="caracteristica_asfalto">
                                                                             <table style="font-size: 10px">
                                                                                 <tr id="asfalto_caracteristica_tr">
-                                                                                    <td id="asfalto_caracteristica_td">Módulo elástico&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                    <td id="asfalto_caracteristica_td">Módulo elástico (psi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                     <td>
                                                                                         <input class="form-control form-control-sm numeric2" type='text' id='modulo_elastico_asfalto' placeholder="Ingrese valor" onchange="modulo_elastico()">
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td>Coeficiente estructural (a<SUB>1</SUB>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                    <td>Coeficiente estructural - a<SUB>1</SUB>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                                                                     <td>
                                                                                         <input class="form-control form-control-sm" type='text' name='a1' id='a1' disabled='true'>
 
@@ -1490,7 +1384,7 @@
                                                                                     <table style="font-size: 10px">
                                                                                         <tr>
                                                                                             <td style="width: 250px">
-                                                                                                Número estructural total requerido (SN3)
+                                                                                                Número estructural total requerido - SN<sub>3</sub>
                                                                                             </td>
                                                                                             <td>
                                                                                                 <input type="text" id="sn3" style="width: 100px">
@@ -1501,7 +1395,7 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>
-                                                                                                Número estructural base y carpeta asfáltica (SN2)
+                                                                                                Número estructural base y carpeta asfáltica - SN<sub>2</sub>
                                                                                             </td>
                                                                                             <td>
                                                                                                 <input type="text" id="sn2" style="width: 100px">
@@ -1509,7 +1403,7 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>
-                                                                                                Número estructural carpeta asfáltica (SN1)
+                                                                                                Número estructural carpeta asfáltica - SN<sub>1</sub>
                                                                                             </td>
                                                                                             <td>
                                                                                                 <input type="text" id="sn1" style="width: 100px">
@@ -1543,7 +1437,7 @@
                                                                                                 <input type="text" id="espesor_asfalto_clc">
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
-                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="in">
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr class="espesorBase">
@@ -1554,7 +1448,7 @@
                                                                                                 <input type="text" id="espesor_base_clc">
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
-                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="in">
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr class="espesorSubbase">
@@ -1565,7 +1459,7 @@
                                                                                                 <input type="text" id="espesor_subbase_clc">
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
-                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="in">
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -1589,13 +1483,13 @@
                                                                                                 <input type="text" id="espesor_asfalto_recomendado" class="numeric2" onchange="recalcularAslfalto()">
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
-                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="in">
                                                                                             </td>
                                                                                             <td>
                                                                                                 &nbsp;
                                                                                             </td>
                                                                                             <td id="diseñoEconomico_td">
-                                                                                                <input id="diseñoEconomico" type="checkbox"> Diseño económico
+                                                                                                <input id="diseñoEconomico" type="checkbox"> Diseño mínimo
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr class="espesorBase">
@@ -1606,7 +1500,7 @@
                                                                                                 <input type="text" id="espesor_base_recomendado" class="numeric2" onchange="recalcularBase()">
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
-                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="in">
                                                                                             </td>
                                                                                             
                                                                                             
@@ -1619,7 +1513,7 @@
                                                                                                 <input type="text" id="espesor_subbase_recomendado" class="numeric2" style="font-size: 10px" onchange="recalcularSubbase()">
                                                                                             </td>
                                                                                             <td width="30px" height="25px">
-                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="plg">
+                                                                                                <input type="text" disabled="disabled" style="height: 100%; width: 100%; vertical-align: middle; text-align: center;" value="in">
                                                                                             </td>
                                                                                             
                                                                                         </tr>
@@ -1738,7 +1632,7 @@
                                                                     <a href="#principalTrafico">
                                                                         <div id="tituloContenedorPrincipal" class="panel-heading">
                                                                             <span style="text-align: left" id="fa-arrow-circle-left" class="fa fa-arrow-circle-left"></span>&nbsp;&nbsp;&nbsp;
-                                                                            <strong>Cálculo del número de ejes equivalentes (ESALS)</strong>
+                                                                            <strong>Cálculo del número de ejes equivalentes (ESAL´S)</strong>
                                                                         </div>
                                                                     </a>
                                                                     <div id="procesoTrafico" class="panel-body" style="background: rgba(255,255,255,1)">
@@ -1746,7 +1640,7 @@
                                                                         <section >
                                                                             <div id="print_proceso_Trafico" class="tab-content">
                                                                                 <p id="aviso_ESALS" style="text-align: center; display:none">No se ha realizado ningun cálculo</p>
-                                                                                <table style="display:none" id="trafico" border="1" cellspacing=0  class="table-responsive table-borderless table-hover table-bordered table-condensed table-editable ESALS_flex" >
+                                                                                <table style="display:none; color:black" id="trafico" border="1" cellspacing=0  class="table-responsive table-borderless table-hover table-bordered table-condensed table-editable ESALS_flex" >
                                                                                     <thead >
                                                                                         <tr>
                                                                                             <th rowspan="2">
@@ -1756,7 +1650,7 @@
                                                                                                 Configuración de ejes
                                                                                             </th>
                                                                                             <th colspan="4">
-                                                                                                Peso por eje
+                                                                                                Peso por eje (kips)
                                                                                             </th>
                                                                                             <th rowspan="2">
                                                                                                 % de vehículos
@@ -1832,7 +1726,7 @@
                                                                         
 
                                                                         <section>
-                                                                            <div id="Valores_factor_Equivalencia" class="tab-content col-md-12">
+                                                                            <div id="Valores_factor_Equivalencia" class="tab-content col-md-12" style="color:black">
                                                                                 
                                                                                 
                                                                             </div>
@@ -1935,7 +1829,7 @@
                                                                                         </tr>
                                                                                         <tr id="Buena">
                                                                                             <td style="width:120px;">
-                                                                                                Buena ( 1 día)
+                                                                                                Buena (1 día)
                                                                                             </td>
                                                                                             <td class="01" style="width:25px;">
                                                                                                 1.35 - 1.25
@@ -2008,7 +1902,7 @@
                                                                                     <table id="proceso_interpo_drenaje_base" style="width:100%;">
                                                                                         <tr style="text-align : justify;">
                                                                                             <td>
-                                                                                                <p>Con el rango indicado en la tabla se efectúa una interpolación entre los porcentajes de tiempo de exposición de la estructura del pavimento a nivel de humedad próximos a la saturación y el coeficiente de drenaje</p>
+                                                                                                <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, sera necesario interpolar. En este caso se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -2082,7 +1976,7 @@
                                                                                         </tr>
                                                                                         <tr id="Buenasb">
                                                                                             <td style="width:120px;">
-                                                                                                Buena ( 1 día)
+                                                                                                Buena (1 día)
                                                                                             </td>
                                                                                             <td class="01_subbase" style="width:25px;">
                                                                                                 1.35 - 1.25
@@ -2155,15 +2049,7 @@
                                                                                     <table id="proceso_interpo_drenaje_subbase" style="width:100%;">
                                                                                         <tr style="text-align : justify;">
                                                                                             <td>
-                                                                                                <p>Con el rango indicado en
-                                                                                                    la tabla se efectúa una
-                                                                                                    interpolación entre los
-                                                                                                    porcentajes de tiempo
-                                                                                                    de exposición de la estructura
-                                                                                                    del pavimento a nivel
-                                                                                                    de humedad próximos a
-                                                                                                    la saturación y el coeficiente
-                                                                                                    de drenaje</p>
+                                                                                                    <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, sera necesario interpolar. En este caso se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -2405,7 +2291,9 @@
                                                                                     <table id="proceso_cls_SN" style="width:100%">
                                                                                         <tr class="formato_ecuacion_SN">
                                                                                             <td colspan="3">
+                                                                                                    <p class="explicacion_calculos" style="text-align: justify; display:none">También se puede cálcular el número estructural media el uso de la siguiente ecuación:</p>
                                                                                                 <img src="Images/FlotaVehiculos/ecusn.png" width="550px" height="80px" />
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Usando los módulos resilientes correspondientes e iterando mediante el método Newton Raphson  se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -2435,23 +2323,30 @@
                                                                                         <tr>
                                                                                             <td colspan="2">
                                                                                                 <br>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Con estos números estructurales se obtiene el número estructual de base (SNb) y el número estructural de subbase (SNsb), así:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>
+                                                                                                
                                                                                                 <img src="Images/FlotaVehiculos/SN.PNG" width="200px" height="120px" />
                                                                                             </td>
                                                                                             
-                                                                                            <th class="espesorBase">
-                                                                                                <p id="ecuacion_SN_base" style="font-size: 11px"></p>
-                                                                                                <p id="calculo_SN_base" style="font-size: 11px"></p>
+                                                                                            <th colspan="2">
+                                                                                                <p class="espesorBase" id="ecuacion_SN_base" ></p>
+                                                                                                <p class="espesorBase" id="calculo_SN_base" ></p>
+                                                                                                <br>
+                                                                                                <p class="espesorSubbase" id="ecuacion_SN_subbase" ></p>
+                                                                                                <p class="espesorSubbase" id="calculo_SN_subbase" ></p>
                                                                                             </th>
-                                                                                            <th class="espesorSubbase">
-                                                                                                <p id="ecuacion_SN_subbase" style="font-size: 11px"></p>
-                                                                                                <p id="calculo_SN_subbase" style="font-size: 11px"></p>
-                                                                                            </th>
+                                                                                            
 
                                                                                         </tr>
+                                                                                        <tr>
+                                                                                                <td colspan="2">
+                                                                                                    <br>
+                                                                                                </td>
+                                                                                            </tr>
                                                                                         <tr class="espesorBase">
                                                                                             <td>
                                                                                                 <strong>Número estructural de base (SN<SUB>b</SUB>):
@@ -2485,17 +2380,18 @@
                                                                                     </div>
                                                                                 </a>
                                                                                 <div id="copyEspesor" class="panel-body" >
+                                                                                        <p id="numero-tabla_EspesirMin" style="text-align: center; font-size: 14px"></p>
                                                                                     <table id="espesor_min" border="1" cellspacing=0 class="table-responsive table-borderless table-hover table-bordered table-condensed table-editable"
                                                                                         style="width:100%">
                                                                                         <thead>
                                                                                         <tr>
                                                                                             <th colspan="3">
-                                                                                                Espesores mínimos (plg)
+                                                                                                Espesores mínimos (in)
                                                                                             </th>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th>
-                                                                                                Esals
+                                                                                                ESAL´S
                                                                                             </th>
                                                                                             <th>
                                                                                                 Carpeta asfáltica
@@ -2508,7 +2404,7 @@
                                                                                         <tbody style="vertical-align: middle; text-align: center;">
                                                                                         <tr id="espesor_min_primeros_val">
                                                                                             <td>
-                                                                                                menor que 50000
+                                                                                                < 50000
                                                                                             </td>
                                                                                             <td>
                                                                                                 1.00
@@ -2563,7 +2459,7 @@
                                                                                         </tr>
                                                                                         <tr id="espesor_min_sextos_val">
                                                                                             <td>
-                                                                                                más de 7000000
+                                                                                                > 7000000
                                                                                             </td>
                                                                                             <td>
                                                                                                 4.00
@@ -2572,7 +2468,7 @@
                                                                                                 6.00
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <tr>
+                                                                                        <tr class="ocultar_explicación_espesor">
                                                                                             <td colspan="3">
                                                                                                 En función del número de ejes equivalentes se selecciona los espesores mínimos, los cuales deben usarse en caso que el valor
                                                                                                 de espesor calculado sea
@@ -2583,16 +2479,21 @@
                                                                                         </tr>
                                                                                     </tbody>
                                                                                     </table>
-                                                                                    <br>
+                                                                                    <br>                                                                              
+                                                                                    
+
                                                                                     <table id="proceso_clc_espesor" style="width:100%">
                                                                                         <tr>
                                                                                             <th colspan="3">
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Para el cálculo del espesor de la carpeta asfáltica se tiene:</p>
                                                                                                 <p id="procesoEspAsfalto" ></p>
                                                                                                 <p id="calcEspAsfalto" ></p>
                                                                                                 <br class="espesorBase">
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">El espesor de la base se calcula de la siguiente manera:</p>
                                                                                                 <p id="procesoEspBase"  class="espesorBase"></p>
                                                                                                 <p id="calcEspBase"  class="espesorBase"></p>
                                                                                                 <br class="espesorSubbase">
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Finalmente, el espesor de subbase se cálcula así:</p>
                                                                                                 <p id="procesoEspSubbase" class="espesorSubbase"></p>
                                                                                                 <p id="calcEspSubbase"  class="espesorSubbase"></p>
                                                                                             </th>
@@ -2605,10 +2506,12 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th colspan="3">
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Cabe aclarar que el valor del número estructural total (con los espesores adoptados) debe ser mayor al número estructural 3.</p>
                                                                                                 <p id="procesoSN" ></p>
                                                                                                 <p id="calcSN" ></p>
-                                                                                                <p id="procesoRevisarSN" ></p>
-                                                                                                <p id="calcRevisarSN" ></p>
+                                                                                                <p class="ocultar_explicación_espesor" id="procesoRevisarSN" ></p>
+                                                                                                <p class="ocultar_explicación_espesor" id="calcRevisarSN" ></p>
+                                                                                                <p class="explicacion_calculos" id="explicacion_revision_sn" style="text-align: justify; display:none"></p>
                                                                                             </th>
                                                                                         </tr>
                                                                                     </table>
@@ -2745,7 +2648,7 @@
                                                                                         <p id="diseño_eco_d3_result"></p>
 
                                                                                     </div>
-                                                                                    
+                                                                               
 
                                                                                 </div>
                                                                             </div>
@@ -2780,7 +2683,134 @@
             </aside>
             <!-- END MAIN CONTENT -->
         </div>
+        <div id="myModal" class="modal fade col-md-12" role="dialog">
+                <div class="modal-dialog" id="modal_trafico">
 
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 style="text-align:center;" class="modal-title"><strong> Parámetros de tráfico</strong></h4>
+                            
+                            <div class="liBtnClcESALS" style="width: 75px">
+                                    <span class="tipBtnClcESALS"> <section class="sctClcESALS"> <p style="font-size: 11px; width: 140px; height: 35px; vertical-align: middle"> Calcular el número de ejes equivalentes</p></section></span>
+                                    <input align='right' id="load-Vehiculos" type="button" value=Calcular class="btn btn-warning btn-radius btn-sm">
+                                    
+                            </div>
+
+                        </div>
+                        <div class="modal-body">
+                                
+                            <section id="datosESALS" style="font-size: 10px; padding-bottom: 20px;" class="tab-content col-md-12">
+                                    <form id="frmParametrosTrafico" action="">
+                                
+                                    <table style="font-size: 12px" id="parametrosESALS">
+                                        <tr>
+                                            <td style="width:210px">Tráfico medio diario anual (veh/día)
+                                            </td>
+                                            <td>
+                                                <input id="traficoTMDAflexible" name="traficoTMDAflexible" class="form-control form-control-sm integer required" type="text" placeholder="Ingrese valor (veh/día)">
+                                            </td>
+                                            <td rowspan="6" style="font-size:16px; width:140px">
+                                            </td>
+                                            <td rowspan="6">
+                                                <p style="font-size:14px; text-align: center; width:210px; border: orange 2px solid; border-radius: 5px">Los valores de peso por eje pueden ser modificados a los valores que se dispongan</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tasa de crecimiento vehicular (%)
+                                            </td>
+                                            <td>
+                                                <input name="traficoTasa_CreFlexible" id="traficoTasa_CreFlexible" class="form-control form-control-sm numeric2 required" type="text" placeholder="Ingrese valor (%)" onkeyup="restrictionPorcentaje ()"> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Periodo de diseño (años)
+                                            </td>
+                                            <td>
+                                                <input name="traficoPeriodo_diseñoFlexible" id="traficoPeriodo_diseñoFlexible" class="form-control form-control-sm integer required" type="text" placeholder="Ingrese valor (Años)"> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Direccionalidad (%)
+                                            </td>
+                                            <td>
+                                                <input name="traficoDireccionalidadFlexible" id="traficoDireccionalidadFlexible" class="form-control form-control-sm numeric2 required" type="text" placeholder="Ingrese valor (%)" onkeyup="restrictionPorcentaje ()"> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Serviciabilidad final - pt
+                                            </td>
+                                            <td>
+                                                <select name="trafico_ptFlexible" id="trafico_ptFlexible" class="form-control form-control-sm required" placeholder="Ingrese valor">
+                                                    <option value="">--Seleccione--</option>
+                                                    <option value="2">2</option>
+                                                    <option value="2.5">2.5</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Número estructural - SN
+                                            </td>
+                                            <td>
+                                                <select name="traficoSN_Flexible" id="traficoSN_Flexible" class="form-control form-control-sm required" placeholder="Ingrese valor">
+                                                    <option value="">--Seleccione--</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                                
+                            </section>
+                        
+                            <br>
+
+                            <table id="FlotaVehiculo" style="font-size: 12px" class="table table-borderless table-hover table-responsive table-bordered table-condensed " border="5">
+
+                                <thead>
+                                    <tr>
+                                        <th colspan="9" style="height: 40px;">
+                                            <h5 style="text-align:center; font-family: Arial" class="modal-title">
+                                                <strong>Tabla ecuatoriana de vehículos</strong>
+                                            </h5>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" rowspan="2" width="80px">
+                                            Tipo de vehículo
+                                        </th>
+                                        <th colspan="2" rowspan="2">
+                                            Descripción
+                                        </th>
+                                        <th width="15px" height="40px" rowspan="2">
+                                            % de flota vehicular
+                                        </th>
+                                        <th colspan="4">
+                                            Peso por eje (kips)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>Eje 1</td>
+                                        <td>Eje 2</td>
+                                        <td>Eje 3</td>
+                                        <td>Eje 4</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
     <div id="ReporteCaratula" style="margin-bottom: 0px; display:none">
         <br>
@@ -2812,9 +2842,9 @@
 
     </div>
     <div id="ReporteDeclaracion" style="margin-bottom: 0px; display:none">
-        <p style="font-size: 18px; font-weight: bold">Renuncia</p>
-        <p style="font-size: 16px; text-align : justify;">El software de Diseño de espesores de capas de pavimentos flexibles por el método AASHTO 1998 (BETA) se difunde bajo
-            el patrocinio de la Titulación de Ingeniería Civil, en interés al mejor aprendizaje de diseño de pavimentos flexibles.
+        <p style="font-size: 18px; font-weight: bold"> <strong>Renuncia</strong> </p>
+        <p style="font-size: 18px; text-align : justify;">El software de diseño de espesores de capas de pavimentos flexibles por el método AASHTO 1998 (Versión BETA). Se difunde bajo
+            el patrocinio del Grupo de Investigacion en Ingeniería Vial (GRIIV) de la Titulación de Ingeniería Civil, en interés de mejorar el aprendizaje de diseño de pavimentos flexibles.
             La Universidad Técnica Particular de Loja no asume ninguna responsabilidad por su contenido o uso. Este documento
             no constituye un estándar, especificación o regulación, pues únicamente tiene fines académicos; así los nombres
             de los elaboradores pueden aparecer en este software solo porque se consideran esenciales para el objetivo de
@@ -2933,33 +2963,33 @@
                         Parámetros de tráfico
                     </td>
                 </tr>
-                <tr>
+                <tr class="ocultParametros_trafico">
                     <td style=" font-size: 16px">
                         <p id="txtTMDA"></p>
                     </td>
 
                 </tr>
-                <tr>
+                <tr class="ocultParametros_trafico">
                     <td style=" font-size: 16px">
                         <p id="txt_r"></p>
                     </td>
                 </tr>
-                <tr>
+                <tr class="ocultParametros_trafico">
                     <td style=" font-size: 16px">
                         <p id="txtPD"></p>
                     </td>
                 </tr>
-                <tr>
+                <tr class="ocultParametros_trafico">
                     <td style=" font-size: 16px">
                         <p id="txtD"></p>
                     </td>
                 </tr>
-                <tr>
+                <tr class="ocultParametros_trafico">
                     <td style=" font-size: 16px">
                         <p id="txt_ptt"></p>
                     </td>
                 </tr>                
-                <tr>
+                <tr class="ocultParametros_trafico">
                     <td style=" font-size: 16px">
                         <p id="txtSNtanteo"></p>
                     </td>
@@ -3225,7 +3255,7 @@
     </div>
 
     <div id="titulo_principal_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
-        <h2 style="text-align: center">Gráficas y Procedimientos</h2>
+        <h2 style="text-align: center">Gráficas y procedimientos</h2>
 
         <p style="text-align: center; font-size: 20px; display:none" class="ESALS_flex">
             <strong>Cálculo de número de ejes equivalentes ESAL´S</strong>
@@ -3236,11 +3266,11 @@
         <p style="text-align: justify; display:none; margin:-2.0% 0;" class="ESALS_flex">TMDA: tráfico medio diario anual,</p> 
         <p style="text-align: justify; display:none" class="ESALS_flex">A: porcentaje de direccionalidad,</p>
         <p style="text-align: justify; display:none; margin:-2.0% 0;" class="ESALS_flex">B: porcentaje de flota vehicular,</p>
-        <p style="text-align: justify; display:none" class="ESALS_flex">r: tasa de crecimiento vehicular,</p>
-        <p style="text-align: justify; display:none; margin:-2.0% 0;" class="ESALS_flex">N: periodo de diseño,</p>
-        <p style="text-align: justify; display:none" class="ESALS_flex">Fe: Factor de equivalencia de carga.</p>
+        <p style="text-align: justify; display:none" class="ESALS_flex">r: tasa de crecimiento vehicular en porcentaje,</p>
+        <p style="text-align: justify; display:none; margin:-2.0% 0;" class="ESALS_flex">N: periodo de diseño en años,</p>
+        <p style="text-align: justify; display:none" class="ESALS_flex">Fe: Factor de camión.</p>
         
-        <p style="text-align: justify; display:none" class="ESALS_flex">En la tabla 1 se observan los valores de ESAL´S calculado por cada flota vehicular y también el valor total de ESAL´S, los factores de equivalencia ilustrados en la tabla se obtuvieron interpolando valores de las tablas de factores de equivalencia del método AASHTO, los cuales están en función de la serviciabilidad final (pt), tipo de eje, peso del eje y un espesor considerado inicialmente.</p>
+        <p style="text-align: justify; display:none" class="ESALS_flex">En la tabla 1 se observan los valores de ESAL´S calculado por cada flota vehicular y también el valor total de ESAL´S, los factores de equivalencia ilustrados en la tabla se obtuvieron interpolando valores de las tablas de factores de equivalencia del método AASHTO, los cuales están en función de la serviciabilidad final (pt), tipo de eje, peso del eje y el espesor asumido inicialmente inicialmente.</p>
             
         
         <p style="text-align: center; font-size: 14px; display:none" class="ESALS_flex">Tabla 1. Valores de factor de equivalencia y ESAL´S obtenidos</p>
@@ -3250,19 +3280,24 @@
             <strong>Cálculo del coeficiente de drenaje de base y subbase</strong> 
         </p>
         <p style="text-align: center; font-size: 20px">
-          <strong>Coeficiente de drenaje de base</strong>  
+          <strong>Coeficiente de drenaje de la base</strong>  
         </p>
         <p id="explicacionDrenaje_base" style="text-align: justify"></p>
         <p id="tab_drenaje_base" style="text-align: center; font-size: 14px"></p>
         
     </div>
+    <div id="titulo_drenajeBase_vacio"></div>
+    <div id="print_drenaje_base_vacio"></div>
+    <div id="titulo_drenajeSubbase_vacio"></div>
+    <div id="print_drenaje_subbase_vacio"></div>
     <div id="titulo_drenajeSubbase_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
-                <strong>Coeficiente de drenaje de subbase</strong>            
+                <strong>Coeficiente de drenaje de la subbase</strong>            
             </p>
             <p id="explicacionDrenaje_subbase" style="text-align: justify"></p>
         <p id="tab_drenaje_subbase" style="text-align: center; font-size: 14px"></p>
     </div>
+    <div id="titulo_graficaBase_vacia"></div>
     <div id="titulo_graficaBase_reporte" style="margin-bottom: 0px; display:none; width: 100% " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
                     <strong>Cálculo de coeficiente estructural y módulo resiliente</strong> 
@@ -3273,17 +3308,18 @@
         <p style="font-size: 16px; text-align: justify">Para el cálculo de estos parámetros existen tres ábacos diferentes dependiendo del material, estos permiten obtener los valores mencionados en función de algún parámetro mecánico del material.</p>
         <p id="print_PropiedadBase" style="font-size: 16px; text-align: justify"></p> 
         <img style="width: 100%" id="copy_carta_base">
-        <p style="font-size: 14px; text-align: center">Figura 1. Carta de diseño para parámetros de base</p>
+        <p id="figura_carta_base" style="font-size: 14px; text-align: center"></p>
         <br>
     </div>
+    <div id="titulo_graficaSubbase_vacia"></div>
     <div id="titulo_graficaSubbase_reporte" style="margin-bottom: 0px; display:none; width: 100% " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
             <strong>Coeficiente estructural y módulo resiliente de subbase</strong> 
         </p>
-        <p style="font-size: 16px; text-align: justify">A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco en el cual depende de párametros mecánicos del material y a partir de este se puede obtener los parámetros mencionados.</p>
+        <p style="font-size: 16px; text-align: justify">A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco, el cual depende de párametros mecánicos del material.</p>
         <p id="print_PropiedadSubbase" style="font-size: 16px; text-align: justify"></p> 
         <img style="width: 100%" id="copy_carta_subbase">
-        <p style="font-size: 14px; text-align: center">Figura 2. Carta de diseño para parámetros de subbase</p>
+        <p id="figura_carta_subbase" style="font-size: 14px; text-align: center"></p>
         <br>
     </div>
     <div id="titulo_graficaModuloElastico_reporte" style="margin-bottom: 0px; display:none; width: 100%" class='page-break-after'>
@@ -3291,7 +3327,7 @@
                     <strong>Módulo resiliente de subrasante</strong>
                 </p>
                 <p style="text-align: justify; ">
-                    Para determinar el módulo resiliente se emplea el siguiente procedimiento.
+                    Para determinar el módulo resiliente se emplea el siguiente procedimiento:
                 </p>
                 <p id="MrEcuacion_flex" style="text-align: center;"></p>
                 <p id="MrProceso_flex" style="text-align: center;"></p>
@@ -3301,7 +3337,7 @@
         </p>
         <p id="print_PropiedadModuloElastico" style="font-size: 16px; text-align: justify"></p>
         <img style="width: 100%" id="copy_carta_ModuloElastico">
-        <p style="font-size: 14px; text-align: center">Figura 3. Carta de diseño para estimación del módulo elástico</p>
+        <p id="figura_carta_moduloElastico" style="font-size: 14px; text-align: center"></p>
         <br>
     </div>
     <div id="titulo_graficaSN_reporte" style="margin-bottom: 0px; display:none; width: 100% " class='page-break-after'>
@@ -3310,8 +3346,9 @@
         </p>
         <p id="explicacionSn" style="text-align: justify;"> </p>
         <p id="print_SN" style="font-size: 16px; text-align: justify;"></p>
+        
         <img style="width: 100%" id="copy_carta_SN">
-        <p style="font-size: 14px; text-align: center">Figura 4. Carta de diseño para estimación del número estructural</p>
+        <p id="figura_carta_sn" style="font-size: 14px; text-align: center"></p>
         <br>
     </div>
     <div id="titulo_clcSN_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
@@ -3321,7 +3358,8 @@
     </div>
     <div id="titulo_clcEspesor_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
-           <strong>Cálculo de espesor de capas de pavimento</strong> 
+           <strong>Cálculo de espesor de capas de pavimento</strong>
+           <p style="text-align: justify;">Para el cálculo del espesor de las capas del pavimento se usa el método de diseño por capas. En este diseño se debe tener en cuenta los espesores mínimos de la siguiente tabla, dado que es impráctico tener espesores de capas muy delgados.  Los valores de los espesores deben redondearse al 0,5 pulgadas más cercano.</p>
         </p>
     </div>
     <!-- BEGIN JS PLUGIN -->

@@ -25,8 +25,12 @@ $(document).ready(function () {
     });
     $('#salirProcesos').click(function () {
         $('#detalle').trigger('click');
+        $("#detalle").show(); 
+        $("#reporte").show();
+       
 
     });
+    
 
    
 
@@ -177,7 +181,7 @@ $(document).ready(function () {
         if (base_CBR.is(":checked")) {
             $('#base_caracteristicas_tr').show(10);
             $('#graficas_base').show(10);
-            $("#base_caracteristicas_td").text("CBR");
+            $("#base_caracteristicas_td").text("CBR (%)");
             $("#base_caracteristicas").val("");
             $("#a2").val("");
             $("#Mb").val("");
@@ -260,7 +264,7 @@ $(document).ready(function () {
         if (subbase_CBR.is(":checked")) {
             $('#subbase_caracteristicas_tr').show(10);
             $('#grafica_capa_subbase').show(10);
-            $("#subbase_caracteristicas_td").text("CBR");
+            $("#subbase_caracteristicas_td").text("CBR (%)");
             $("#subbase_caracteristicas").val("");
             $("#a3").val("");
             $("#Msb").val("");
@@ -313,7 +317,7 @@ $(document).ready(function () {
         $('#myModal').modal('hide');
     });
     $('#load-Vehiculos').click(function () {
-        $('#myModal').modal('hide');
+        
         $(".ESALS_flex").show();
         if(($("#traficoTMDAflexible").val() === "")&&($("#traficoTasa_CreFlexible").val() === "")&&($("#traficoPeriodo_diseñoFlexible").val() === "")&&($("#traficoDireccionalidadFlexible").val() === "")&&($("#traficoSN_Flexible").val() === "")){
             $("#aviso_ESALS").show();
@@ -343,6 +347,8 @@ $(document).ready(function () {
 
     // métodos para mostrar la ventana de procedimientos paso a paso
     $("#detalle").on("click", function () {
+        $("#detalle").hide();
+        $("#reporte").hide();
         
         $("#panelPrincipal").toggleClass('col-md-12 col-md-5');
         $("#panelPrincipal").find(".aj").toggleClass('col-md-6 col-md-12');
@@ -596,7 +602,7 @@ function basePropiedad() {
     var propbs = parseFloat($('#base_caracteristicas').val());
     var txtbs = $('#base_caracteristicas_td').text();
 
-    if ((txtbs == "CBR")) {
+    if ((txtbs == "CBR (%)")) {
         loadGraphBaseGranular();
         if ((20 <= propbs) && (propbs < 30)) {
             var rescbrmrbs = 1000 * interpo(20, 30, propbs, 15.0230074694818, 19.544932471734)
@@ -880,7 +886,7 @@ function basePropiedad() {
 function subbaseprop() {
     var propsbs = parseFloat($('#subbase_caracteristicas').val());
     var txtsbs = $('#subbase_caracteristicas_td').text();
-    if ((txtsbs == "CBR")) {
+    if ((txtsbs == "CBR (%)")) {
         loadGraphSubbaseGranular();
         if ((5 <= propsbs) && (propsbs < 10)) {
             var rescbrmrsbs = 1000 * interpo(5, 10, propsbs, 6.46392408638396, 10.4792886849099)
@@ -1051,14 +1057,14 @@ function subbaseprop() {
 function mrcalular() {
     var varsubr = parseFloat($('#subrasante_caracteristicas_flexible').val());
     
-    if ((varsubr < 10)) {
+    if ((varsubr <= 10)) {
         var mrsubr = 1500 * varsubr;
         $("#Mr").val(mrsubr.toFixed(2));
-    } else if ((10 <= varsubr) && (varsubr <= 20)) {
-        var mrsubr1 = 3000 * varsubr;
+    } else if ((10 < varsubr) && (varsubr <= 20)) {
+        var mrsubr1 = 3000 * (Math.pow(varsubr, 0.65));
         $("#Mr").val(mrsubr1.toFixed(2));
     } else if ((20 <= varsubr) && (varsubr <= 100)) {
-        var mrsubr2 = (4326 * Math.log(varsubr ^ 0.65)) + 241;
+        var mrsubr2 = (4326 * Math.log(varsubr)) + 241;
         $("#Mr").val(mrsubr2.toFixed(2));
     } else if ((varsubr > 100)) {
         $("#Mr").val("");

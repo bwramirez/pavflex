@@ -9,23 +9,8 @@ $(document).ready(function () {
         $("#mr2").val(15000);
         $("#mr3").val(20000);
     });
-    $("#clc").on("click", function () {
-
-        var sn1 = Newton1();
-        $("#SN1").val(sn1.toFixed(2));
-
-
-        var sn2 = Newton2();
-        $("#SN2").val(sn2.toFixed(2));
-
-
-        var sn3 = Newton3();
-        $("#SN3").val(sn3.toFixed(2));
-
-    });
-    $('#print_btn').click(function () {
-        $('#graphics2').printThis();
-    });
+    
+    
 });
 
 function f1(x) {
@@ -76,7 +61,7 @@ function abs_(x) {
     }
 }
 
-var Newton1 = function () {
+var clcEspesorBase = function () {
     var iterations = 1000000;
     var x = 0;
 
@@ -90,7 +75,7 @@ var Newton1 = function () {
 
 
 }
-var Newton2 = function () {
+var clcEspesorSubbase = function () {
     var iterations = 1000000;
     var x = 0;
 
@@ -104,7 +89,7 @@ var Newton2 = function () {
 
 
 }
-var Newton3 = function () {
+var clcEspesorAsfalto = function () {
     var iterations = 1000000;
     var x = 0;
 

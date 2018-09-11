@@ -598,16 +598,16 @@ input[type=text] {
 #myModal .modal-body {
     height: 600px;
     overflow-y: auto;
-    width: 100%;
+    width:100%;
 }
 
 #myModal .modal-dialog {
     position: fixed;
-    width: 40%;
+    width: 60%;
     top: 0;
     bottom: 0;
-    right: 20%;
-    left: 30%;
+    right:70%;
+    left: 18.5%;
 }
 #myModal_aviso_anclas {
     position: fixed;
@@ -638,11 +638,14 @@ input[type=text] {
     vertical-align: middle;
     text-align: center;
     padding: 0px;
+    font-family: Arial;
+    
 }
 #FlotaVehiculo th {
     vertical-align: middle;
     text-align: center;
     padding: 0px;
+    font-family: Arial;
 }
 
 #diseñoEconomico_td {
@@ -655,12 +658,14 @@ input[type=text] {
     vertical-align: middle;
     text-align: left;
     padding: 0px;
+    font-family: Arial;
 }
 #tabla_factor_Equivalencia td {
     vertical-align: middle;
     text-align: center;
     padding: 0px;
 }
+
 
 #tabla_factor_Equivalencia th {
     vertical-align: middle;

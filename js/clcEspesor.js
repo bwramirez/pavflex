@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     $('#diseñoEconomico').on('click', function () {
         var diseñoEconomico = $("#diseñoEconomico")
         if (diseñoEconomico.is(":checked")) {
@@ -52,7 +53,7 @@ $(document).ready(function () {
             document.getElementById("diseño_eco_snsb_proces").innerHTML = "SN<SUB>sb</SUB> = SN<SUB>3</SUB> - SN<SUB>2</SUB>"
             document.getElementById("diseño_eco_snsb_result").innerHTML = "SN<SUB>sb</SUB> = " + Sn3.toFixed(2) + " - " + Sn2.toFixed(2) +  " = " + Snsb.toFixed(2);
             document.getElementById("diseño_eco_d3_proces").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB> x m<SUB>3</SUB>");
-            document.getElementById("diseño_eco_d3_result").innerHTML = "D<SUB>3</SUB>" + " = " + Snsb.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " ≈ " + D3_redondeado.toFixed(2);
+            document.getElementById("diseño_eco_d3_result").innerHTML = "D<SUB>3</SUB>" + " = " + Snsb.toFixed(2) + " / " + a3.toFixed(3) + "x" + m3.toFixed(2) + " = " + D3.toFixed(2) + " in" + " ≈ " + D3_redondeado.toFixed(2) + " in";
         } else {
             $('#btnClcSN').trigger('click');
             $("#espesor_asfalto_recomendado").prop("disabled", false);
@@ -66,6 +67,10 @@ $(document).ready(function () {
 
 
     $("#btnClcSN").on("click", function () {
+        
+
+        
+		
         var addSubbase = $("#addSubbase")
         var addBase = $("#addBase")
         $('.recalc_process').css('display', 'none');
@@ -77,17 +82,17 @@ $(document).ready(function () {
         }
 
         if ((addBase.is(":checked")) && (addSubbase.is(":checked"))) {
-            var sn3 = Newton3();
+            var sn3 = clcEspesorAsfalto();
 
             $("#sn3").val(sn3.toFixed(2));
             document.getElementById('proceso_SN3').innerHTML = sn3.toFixed(2)
 
 
-            var sn2 = Newton2();
+            var sn2 = clcEspesorSubbase();
             $("#sn2").val(sn2.toFixed(2));
             document.getElementById('proceso_SN2').innerHTML = sn2.toFixed(2)
 
-            var sn1 = Newton1();
+            var sn1 = clcEspesorBase();
             $("#sn1").val(sn1.toFixed(2));
             document.getElementById('proceso_SN1').innerHTML = sn1.toFixed(2)
 
@@ -291,9 +296,9 @@ $(document).ready(function () {
 
                 }
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
-                document.getElementById("resultado_EspBase").innerHTML = parseFloat($('#espesor_base_recomendado').val()).toFixed(2) + " plg";
-                document.getElementById("resultado_EspSubbase").innerHTML = parseFloat($('#espesor_subbase_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
+                document.getElementById("resultado_EspBase").innerHTML = parseFloat($('#espesor_base_recomendado').val()).toFixed(2) + " in";
+                document.getElementById("resultado_EspSubbase").innerHTML = parseFloat($('#espesor_subbase_recomendado').val()).toFixed(2) + " in";
 
 
                 var SNf = (parseFloat($('#resultado_EspAsfalte').text()) * parseFloat($('#coeficiente_a1_oculto').val())) + (parseFloat($('#resultado_EspBase').text()) * ((parseFloat($('#coefa2').val())) * (parseFloat($('#m2').val())))) + (parseFloat($('#resultado_EspSubbase').text()) * ((parseFloat($('#coefa3').val())) * (parseFloat($('#m3').val()))));
@@ -308,18 +313,18 @@ $(document).ready(function () {
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
                 document.getElementById("procesoEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
-                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
+                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "in" + " ≈ " + $('#resultado_EspBase').text());
                 $("#espesor_base_clc").val(espesor_base_recomendado.toFixed(2));
 
                 document.getElementById("procesoEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
-                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
+                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "in" + " ≈ " + $('#resultado_EspSubbase').text());
                 $("#espesor_subbase_clc").val(espesor_subbase_recomendado.toFixed(2));
 
                 document.getElementById("procesoSN").innerHTML = ("SN" + " = " + "D<SUB>1</SUB> x a<SUB>1</SUB>" + " + " + "D<SUB>2</SUB> x a<SUB>2</SUB> x m<SUB>2</SUB>" + " + " + "D<SUB>3</SUB> x a<SUB>2</SUB> x m<SUB>3</SUB>");
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfBaseSubbase();
                 $('#graphics8').show(10);
@@ -477,8 +482,8 @@ $(document).ready(function () {
                 }
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
-                document.getElementById("resultado_EspSubbase").innerHTML = parseFloat($('#espesor_subbase_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
+                document.getElementById("resultado_EspSubbase").innerHTML = parseFloat($('#espesor_subbase_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -495,7 +500,7 @@ $(document).ready(function () {
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
                 document.getElementById("procesoEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
-                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
+                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "in" + " ≈ " + $('#resultado_EspSubbase').text());
                 $("#espesor_subbase_clc").val(espesor_subbase_recomendado.toFixed(2));
 
 
@@ -503,7 +508,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -664,8 +669,8 @@ $(document).ready(function () {
                 }
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
-                document.getElementById("resultado_EspBase").innerHTML = parseFloat($('#espesor_base_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
+                document.getElementById("resultado_EspBase").innerHTML = parseFloat($('#espesor_base_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -681,7 +686,7 @@ $(document).ready(function () {
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
                 document.getElementById("procesoEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
-                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
+                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "in" + " ≈ " + $('#resultado_EspBase').text());
                 $("#espesor_base_clc").val(espesor_base_recomendado.toFixed(2));
 
 
@@ -689,6 +694,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
 
                 espAsfBase();
@@ -791,7 +797,7 @@ $(document).ready(function () {
 
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -815,6 +821,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
 
                 espAsfSubbase();
@@ -839,17 +846,17 @@ $(document).ready(function () {
             $('.resultados').show(10);
             $('.espesorSubbase').css('display', 'none');
 
-            var sn3 = Newton3();
+            var sn3 = clcEspesorAsfalto();
 
             $("#sn3").val(sn3.toFixed(2));
             document.getElementById('proceso_SN3').innerHTML = sn3.toFixed(2)
 
 
-            var sn2 = Newton2();
+            var sn2 = clcEspesorSubbase();
             $("#sn2").val(sn2.toFixed(2));
             document.getElementById('proceso_SN2').innerHTML = sn2.toFixed(2)
 
-            var sn1 = Newton1();
+            var sn1 = clcEspesorBase();
             $("#sn1").val(sn1.toFixed(2));
             document.getElementById('proceso_SN1').innerHTML = sn1.toFixed(2)
 
@@ -995,8 +1002,8 @@ $(document).ready(function () {
                 }
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
-                document.getElementById("resultado_EspBase").innerHTML = parseFloat($('#espesor_base_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
+                document.getElementById("resultado_EspBase").innerHTML = parseFloat($('#espesor_base_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -1012,7 +1019,7 @@ $(document).ready(function () {
                 $("#espesor_asfalto_clc").val(espesor_asfalto_recomendado.toFixed(2));
 
                 document.getElementById("procesoEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + "SN<SUB>b</SUB>" + " / " + "a<SUB>2</SUB>" + " x " + "m<SUB>2</SUB>");
-                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspBase').text());
+                document.getElementById("calcEspBase").innerHTML = ("D<SUB>2</SUB>" + " = " + snb.toFixed(2) + " / " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + espesor_base_recomendado.toFixed(2) + "in" + " ≈ " + $('#resultado_EspBase').text());
                 $("#espesor_base_clc").val(espesor_base_recomendado.toFixed(2));
 
 
@@ -1020,7 +1027,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfBase();
                 $('#graphics9').show(10);
@@ -1122,7 +1129,7 @@ $(document).ready(function () {
 
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -1146,7 +1153,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -1168,17 +1175,17 @@ $(document).ready(function () {
         } else if ((addSubbase.is(":checked")) && (addBase.is(":not(:checked)"))) {
             $('.resultados').show(10);
             $('.espesorBase').css('display', 'none');
-            var sn3 = Newton3();
+            var sn3 = clcEspesorAsfalto();
 
             $("#sn3").val(sn3.toFixed(2));
             document.getElementById('proceso_SN3').innerHTML = sn3.toFixed(2)
 
 
-            var sn2 = Newton2();
+            var sn2 = clcEspesorSubbase();
             $("#sn2").val(sn2.toFixed(2));
             document.getElementById('proceso_SN2').innerHTML = sn2.toFixed(2)
 
-            var sn1 = Newton1();
+            var sn1 = clcEspesorBase();
             $("#sn1").val(sn1.toFixed(2));
             document.getElementById('proceso_SN1').innerHTML = sn1.toFixed(2)
 
@@ -1322,8 +1329,8 @@ $(document).ready(function () {
                 }
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
-                document.getElementById("resultado_EspSubbase").innerHTML = parseFloat($('#espesor_subbase_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
+                document.getElementById("resultado_EspSubbase").innerHTML = parseFloat($('#espesor_subbase_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -1343,7 +1350,7 @@ $(document).ready(function () {
 
 
                 document.getElementById("procesoEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + "SN<SUB>sb</SUB>" + " / " + "a<SUB>3</SUB>" + " x " + "m<SUB>3</SUB>");
-                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "plg" + " ≈ " + $('#resultado_EspSubbase').text());
+                document.getElementById("calcEspSubbase").innerHTML = ("D<SUB>3</SUB>" + " = " + snsb.toFixed(2) + " / " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + espesor_subbase_recomendado.toFixed(2) + "in" + " ≈ " + $('#resultado_EspSubbase').text());
                 $("#espesor_subbase_clc").val(espesor_subbase_recomendado.toFixed(2));
 
 
@@ -1351,7 +1358,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -1453,7 +1460,7 @@ $(document).ready(function () {
 
 
 
-                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
+                document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -1477,7 +1484,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -1501,17 +1508,17 @@ $(document).ready(function () {
         } else if ((addSubbase.is(":not(:checked)")) && (addBase.is(":not(:checked)"))) {
             $('.resultados').show(10);
 
-            var sn3 = Newton3();
+            var sn3 = clcEspesorAsfalto();
 
             $("#sn3").val(sn3.toFixed(2));
             document.getElementById('proceso_SN3').innerHTML = sn3.toFixed(2)
 
 
-            var sn2 = Newton2();
+            var sn2 = clcEspesorSubbase();
             $("#sn2").val(sn2.toFixed(2));
             document.getElementById('proceso_SN2').innerHTML = sn2.toFixed(2)
 
-            var sn1 = Newton1();
+            var sn1 = clcEspesorBase();
             $("#sn1").val(sn1.toFixed(2));
             document.getElementById('proceso_SN1').innerHTML = sn1.toFixed(2)
 
@@ -1591,7 +1598,7 @@ $(document).ready(function () {
 
 
 
-            document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " plg";
+            document.getElementById("resultado_EspAsfalte").innerHTML = parseFloat($('#espesor_asfalto_recomendado').val()).toFixed(2) + " in";
 
 
 
@@ -1615,7 +1622,7 @@ $(document).ready(function () {
             document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-
+            document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
             document.getElementById('graphics8').style.display = 'none';
             document.getElementById('graphics9').style.display = 'none';
             document.getElementById('graphics10').style.display = 'none';
@@ -1633,7 +1640,7 @@ $(document).ready(function () {
             iterarSN();
             loadGraph();
         }
-
+    
 
     });
 });
@@ -1694,6 +1701,7 @@ function recalcularBase() {
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
+            
         } else {
             $('.espesorAsfalto').css('display', 'none');
             $('.espesorAsfalto_inf').show(10);
@@ -1707,6 +1715,7 @@ function recalcularBase() {
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
+            
         }
 
 
@@ -1743,6 +1752,7 @@ function recalcularBase() {
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
+            
         } else {
             $('.espesorAsfalto').css('display', 'none');
             $('.espesorAsfalto_inf').show(10);
@@ -1756,6 +1766,7 @@ function recalcularBase() {
             document.getElementById("calcSN_recal").innerHTML = "SN" + " = " + espesorBasecorr.toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
+            
         }
 
     }
@@ -1818,6 +1829,7 @@ function recalcularSubbase() {
             document.getElementById("calcSN_recal_sb").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + (Math.ceil(espesor_base_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_sb").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_sb").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
+            
         } else {
             $('.espesorBase').css('display', 'none');
             $('.espesorBase_inf').show(10);
@@ -1831,6 +1843,7 @@ function recalcularSubbase() {
             document.getElementById("calcSN_recal_sb").innerHTML = "SN" + " = " + (Math.ceil(espesor_asfalto_recomendado / 0.5) * 0.5).toFixed(2) + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "      +     " + " " + parseFloat($("#espesor_subbase_recomendado").val()).toFixed(2) + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN_recal_sb").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN_recal_sb").innerHTML = SNf.toFixed(2) + " > " + parseFloat($('#sn3').val()).toFixed(2) + " " + rev;
+            
         }
 
 
