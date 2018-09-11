@@ -397,7 +397,6 @@ var tablaEqui3tr_flex = Array(
 
 
 function ObtnerTablaF_Equivalencia(pt, tipoEje) {
-
     //Tabla de equivalencias
     var eqvTabla = Array({ pt: 2, tipoEje: 1, tabla: tablaEqui2s_flex }, { pt: 2.5, tipoEje: 1, tabla: tablaEqui25s_flex }, { pt: 3, tipoEje: 1, tabla: tablaEqui3s_flex },
 
@@ -406,9 +405,7 @@ function ObtnerTablaF_Equivalencia(pt, tipoEje) {
         { pt: 2, tipoEje: 3, tabla: tablaEqui2tr_flex }, { pt: 2.5, tipoEje: 3, tabla: tablaEqui25tr_flex }, { pt: 3, tipoEje: 3, tabla: tablaEqui3tr_flex },
 
     );
-
     var tabla = null;
-
     //Obtiene la tabla a aplicar
     $(eqvTabla).each(function(i, item) {
         if (item.pt === pt && item.tipoEje === tipoEje) {
@@ -425,16 +422,12 @@ function ObtnerTablaF_Equivalencia(pt, tipoEje) {
 
 function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
     var tabla = ObtnerTablaF_Equivalencia(pt, tipoEje);
-
     if (tabla != null) {
-
         var colSn = sn;
         console.log('colSn', colSn);
-
         var imit = kips / 2;
         var iinf = Math.trunc(imit);
         var isup = Math.ceil(imit);
-
         if (iinf == isup) {
             var value = tabla[iinf][colSn];
             var descript = jQuery.validator.format("{0}", "Al ser un valor de la tabla no se debe realizar interpolación");
@@ -458,13 +451,9 @@ function ObtenerInterpolacionBase(pt, tipoEje, kips, sn) {
             var frm = jQuery.validator.format("Fe = {0} + [({1} - {2}) * ({3} - {4}) / ({5} - {6})]", einf, kips, tabla[iinf][0], esup, einf, tabla[isup][0], tabla[iinf][0]);
             var form = jQuery.validator.format("Fe = {0}", result_fe );
             var r = { 'tabla': tabla, 'finf': iinf, 'fsup': isup, 'csn': colSn, 'value': rst, 'descript': descript, 'formulaVar': form,  'formula': frm  };
-            
-            return r;
-            
+            return r;            
             //return rst;
-
         }
-
     } else {
         console.log('No tabla');
     }

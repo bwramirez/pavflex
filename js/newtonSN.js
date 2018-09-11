@@ -47,10 +47,8 @@ function f3(x) {
 }
 
 function g(x) {
-
     var psi = parseFloat($('#psi').val());
     return (((283893 * Math.log((10 * psi) / (27))) / (50 * Math.log(10) * Math.pow((x + 1), 0.619) * (Math.pow(((1094 / Math.pow((x + 1), 0.519)) + (2 / 5)), 2)))) + ((234) / (25 * Math.log(10) * (x + 1))));
-
 }
 
 function abs_(x) {
@@ -64,16 +62,11 @@ function abs_(x) {
 var clcEspesorBase = function () {
     var iterations = 1000000;
     var x = 0;
-
-
     while (abs_(f1(x)) > 0.0000001 && iterations >= 0) {
         x = x - (f1(x) / g(x));
         iterations = iterations - 1;
     }
-
     return x;
-
-
 }
 var clcEspesorSubbase = function () {
     var iterations = 1000000;

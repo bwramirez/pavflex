@@ -577,8 +577,6 @@ function serviciabilidad() {
     } else {
         $("#psi").val("");
     }
-
-
 }
 
 function modulo_elastico() {

@@ -3,7 +3,6 @@ $(document).ready(function () {
 });
 
 function imprimir1() {
-
 	var printme = document.getElementById("Reporte_variables_resultados");
 	var printme0 = document.getElementById("ReporteResultados");
 	//DATOS DEL PROYECTO
@@ -155,9 +154,6 @@ function imprimir1() {
 	var recibeecSB = document.getElementById('espesor_subbase_recomendado').value;
 	document.getElementById('txt_espesor_recomendado_subbase').innerHTML = "<strong>" + "Espesor de subbase: " + "</strong>" + recibeecSB + " in";
 	//FIN
-
-
-
 	var caratula = document.getElementById("ReporteCaratula");
 	var declaracion = document.getElementById("ReporteDeclaracion");
 
@@ -419,7 +415,7 @@ function imprimir() {
 			var item = tipoVehiculos[index];
 			var data = item['data' + eje];
 
-			CargarTablaEquivalencia(tablasEquivalencia, data, title);
+			CargarTablaF_Equivalencia(tablasEquivalencia, data, title);
 
 		}
 	});
