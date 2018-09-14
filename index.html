@@ -1902,14 +1902,14 @@
                                                                                     <table id="proceso_interpo_drenaje_base" style="width:100%;">
                                                                                         <tr style="text-align : justify;">
                                                                                             <td>
-                                                                                                <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, sera necesario interpolar. En este caso se tiene:</p>
+                                                                                                <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, será necesario interpolar. En este caso se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <th>
+                                                                                            <td class="style_drenaje_base">
                                                                                                 <p id="ec_interpolacion_drenaje_base"></p>
                                                                                                 <p id="resol_interpolacion_drenaje_base"></p>
-                                                                                            </th>
+                                                                                            </td>
                                                                                         </tr>
                                                                                     </table>
                                                                                 </div>
@@ -2049,14 +2049,14 @@
                                                                                     <table id="proceso_interpo_drenaje_subbase" style="width:100%;">
                                                                                         <tr style="text-align : justify;">
                                                                                             <td>
-                                                                                                    <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, sera necesario interpolar. En este caso se tiene:</p>
+                                                                                                    <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, será necesario interpolar. En este caso se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
-                                                                                        <tr>
-                                                                                            <th>
+                                                                                        <tr class="style_drenaje_subbase">
+                                                                                            <td>
                                                                                                 <p id="ec_interpolacion_drenaje_subbase"></p>
                                                                                                 <p id="resol_interpolacion_drenaje_subbase"></p>
-                                                                                            </th>
+                                                                                            </td>
                                                                                         </tr>
                                                                                     </table>
                                                                                 </div>
@@ -2291,9 +2291,9 @@
                                                                                     <table id="proceso_cls_SN" style="width:100%">
                                                                                         <tr class="formato_ecuacion_SN">
                                                                                             <td colspan="3">
-                                                                                                    <p class="explicacion_calculos" style="text-align: justify; display:none">También se puede cálcular el número estructural media el uso de la siguiente ecuación:</p>
+                                                                                                    <p class="explicacion_calculos" style="text-align: justify; display:none">También se puede calcular el número estructural mediante el uso de la siguiente ecuación:</p>
                                                                                                 <img src="Images/FlotaVehiculos/ecusn.png" width="550px" height="80px" />
-                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Usando los módulos resilientes correspondientes e iterando mediante el método Newton Raphson  se tiene:</p>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Usando los módulos resilientes correspondientes e iterando mediante el método Newton-Raphson  se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -2485,15 +2485,15 @@
                                                                                     <table id="proceso_clc_espesor" style="width:100%">
                                                                                         <tr>
                                                                                             <th colspan="3">
-                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Para el cálculo del espesor de la carpeta asfáltica se tiene:</p>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none; font-weight: normal;">Para el cálculo del espesor de la carpeta asfáltica se tiene:</p>
                                                                                                 <p id="procesoEspAsfalto" ></p>
                                                                                                 <p id="calcEspAsfalto" ></p>
                                                                                                 <br class="espesorBase">
-                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">El espesor de la base se calcula de la siguiente manera:</p>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none; font-weight: normal;">El espesor de la base se calcula de la siguiente manera:</p>
                                                                                                 <p id="procesoEspBase"  class="espesorBase"></p>
                                                                                                 <p id="calcEspBase"  class="espesorBase"></p>
                                                                                                 <br class="espesorSubbase">
-                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Finalmente, el espesor de subbase se cálcula así:</p>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none; font-weight: normal;">Finalmente, el espesor de subbase se cálcula así:</p>
                                                                                                 <p id="procesoEspSubbase" class="espesorSubbase"></p>
                                                                                                 <p id="calcEspSubbase"  class="espesorSubbase"></p>
                                                                                             </th>
@@ -2506,12 +2506,12 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <th colspan="3">
-                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Cabe aclarar que el valor del número estructural total (con los espesores adoptados) debe ser mayor al número estructural 3.</p>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none; font-weight: normal;">Cabe aclarar que el valor del número estructural total (con los espesores adoptados) debe ser mayor al número estructural 3.</p>
                                                                                                 <p id="procesoSN" ></p>
                                                                                                 <p id="calcSN" ></p>
                                                                                                 <p class="ocultar_explicación_espesor" id="procesoRevisarSN" ></p>
                                                                                                 <p class="ocultar_explicación_espesor" id="calcRevisarSN" ></p>
-                                                                                                <p class="explicacion_calculos" id="explicacion_revision_sn" style="text-align: justify; display:none"></p>
+                                                                                                <p class="explicacion_calculos" id="explicacion_revision_sn" style="text-align: justify; display:none; font-weight: normal;"></p>
                                                                                             </th>
                                                                                         </tr>
                                                                                     </table>
@@ -2569,7 +2569,7 @@
                                                                                         <canvas id="espAsfalto" width="480px" height="150px"/>
                                                                                     </div>
                                                                                     <br>
-                                                                                    <hr>
+                                                                                    
                                                                                     <div id="recal_espesores" style="text-align: center" class="recalc_process">
                                                                                         <p style="font-weight: bold;" >Espesores y números estructurales recalculados</p>
                                                                                         <div id="base_recalculada">
@@ -2814,17 +2814,17 @@
     </form>
     <div id="ReporteCaratula" style="display:none; margin: 0 auto;">
         <div  style="width :auto; height :auto; position: absolute ; top:40%;">
-            <h2 style="text-align: center; font-size: 20px">Laboratorio virtual de pavimentos</h2>
-            <h2 style="text-align: center; font-size: 20px">Reporte de cálculos del software para la estimación de espesores de capas de pavimentos flexibles por el método AASHTO
+            <h2 style="text-align: center; font-size: 24px">Laboratorio virtual de pavimentos</h2>
+            <h2 style="text-align: center; font-size: 24px">Reporte de cálculos del software para la estimación de espesores de capas de pavimentos flexibles por el método AASHTO
                 1998
             </h2>
-        </div>      
+        </div>     
           
     </div>
     <div id="ReporteDeclaracion" style="margin-bottom: 0px; display:none">
         <p style="font-size: 18px; font-weight: bold"> <strong>Renuncia</strong> </p>
         <p style="font-size: 18px; text-align : justify;">El software de diseño de espesores de capas de pavimentos flexibles por el método AASHTO 1998 (Versión BETA). Se difunde bajo
-            el patrocinio del Grupo de Investigacion en Ingeniería Vial (GRIIV) de la Titulación de Ingeniería Civil, en interés de mejorar el aprendizaje de diseño de pavimentos flexibles.
+            el patrocinio del Grupo de Investigacion en Ingeniería Vial de la Titulación de Ingeniería Civil, en interés de mejorar el aprendizaje de diseño de pavimentos flexibles.
             La Universidad Técnica Particular de Loja no asume ninguna responsabilidad por su contenido o uso. Este documento
             no constituye un estándar, especificación o regulación, pues únicamente tiene fines académicos; así los nombres
             de los elaboradores pueden aparecer en este software solo porque se consideran esenciales para el objetivo de
@@ -3285,7 +3285,7 @@
         <p style="text-align: center; font-size: 20px">
             <strong>Coeficiente estructural y módulo resiliente de base</strong> 
         </p>
-        <p style="font-size: 16px; text-align: justify">Para el cálculo de estos parámetros existen tres ábacos diferentes dependiendo del material, estos permiten obtener los valores mencionados en función de algún parámetro mecánico del material.</p>
+        
         <p id="print_PropiedadBase" style="font-size: 16px; text-align: justify"></p> 
         <img style="width: 100%" id="copy_carta_base">
         <p id="figura_carta_base" style="font-size: 14px; text-align: center"></p>
@@ -3307,7 +3307,7 @@
                     <strong>Módulo resiliente de subrasante</strong>
                 </p>
                 <p style="text-align: justify; ">
-                    Para determinar el módulo resiliente se emplea el siguiente procedimiento:
+                    Para determinar el módulo resiliente de la subrasante se emplea la siguiente fórmula:
                 </p>
                 <p id="MrEcuacion_flex" style="text-align: center;"></p>
                 <p id="MrProceso_flex" style="text-align: center;"></p>
@@ -3322,7 +3322,7 @@
     </div>
     <div id="titulo_graficaSN_reporte" style="margin-bottom: 0px; display:none; width: 100% " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
-           <strong>Cálculo de número estructural SN gráfico</strong> 
+           <strong>Cálculo gráfico del número estructural SN</strong> 
         </p>
         <p id="explicacionSn" style="text-align: justify;"> </p>
         <p id="print_SN" style="font-size: 16px; text-align: justify;"></p>
@@ -3333,13 +3333,13 @@
     </div>
     <div id="titulo_clcSN_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
-           <strong>Cálculo de número estructural SN numérico</strong> 
+           <strong>Cálculo numérico del número estructural SN</strong> 
         </p>
     </div>
     <div id="titulo_clcEspesor_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
            <strong>Cálculo de espesor de capas de pavimento</strong>
-           <p style="text-align: justify;">Para el cálculo del espesor de las capas del pavimento se usa el método de diseño por capas. En este diseño se debe tener en cuenta los espesores mínimos de la siguiente tabla, dado que es impráctico tener espesores de capas muy delgados.  Los valores de los espesores deben redondearse al 0,5 pulgadas más cercano.</p>
+           <p style="text-align: justify;">Para el cálculo del espesor de las capas del pavimento se usa el método de diseño por capas. En este diseño se debe tener en cuenta los espesores mínimos de la siguiente tabla, dado que no es práctico ni económico tener espesores de capas muy delgados. Los valores de los espesores deben redondearse a 0,5 pulgadas más cercano.</p>
         </p>
     </div>
     <!-- BEGIN JS PLUGIN -->

@@ -899,7 +899,7 @@ input[type=text] {
     font-size: 10.5 px;
 }
 
-#proceso_interpo_drenaje_base th {
+#proceso_interpo_drenaje_base .style_drenaje_base {
     vertical-align: middle;
     text-align: center;
     padding: 0px;
@@ -911,7 +911,7 @@ input[type=text] {
 #proceso_interpo_drenaje_subbase {
     font-size: 10.5 px;
 }
-#proceso_interpo_drenaje_subbase th {
+#proceso_interpo_drenaje_subbase .style_drenaje_subbase {
     vertical-align: middle;
     text-align: center;
     padding: 0px;
