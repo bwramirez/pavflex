@@ -101,6 +101,7 @@ $(document).ready(function () {
 
             var snsb = sn3 - sn2;
             document.getElementById('SN_subbase_corregido').innerHTML = snsb.toFixed(2);
+            $("#diseñoEconomico_td").show();
             if ((snb > 0) && (snsb > 0)) {
                 $('.resultados').show(10);
 
@@ -864,7 +865,7 @@ $(document).ready(function () {
 
             document.getElementById('SN_base_corregido').innerHTML = snb.toFixed(2);
 
-
+            $("#diseñoEconomico_td").hide();
             if (snb > 0) {
                 $('.espesorBase').show(10);
                 document.getElementById("ecuacion_SN_base").innerHTML = ("SN<SUB>b</SUB>" + " = " + "SN<SUB>3</SUB>" + " - " + "SN<SUB>1</SUB>");
@@ -1191,7 +1192,7 @@ $(document).ready(function () {
 
             var snsb = sn3 - sn2;
             document.getElementById('SN_subbase_corregido').innerHTML = snsb.toFixed(2);
-
+            $("#diseñoEconomico_td").hide();
             if (snsb > 0) {
                 $('.espesorSubbase').show(10);
                 document.getElementById("ecuacion_SN_subbase").innerHTML = ("SN<SUB>sb</SUB>" + " = " + "SN<SUB>3</SUB>" + " - " + "SN<SUB>1</SUB>");
@@ -1521,7 +1522,7 @@ $(document).ready(function () {
             var sn1 = clcEspesorBase();
             $("#sn1").val(sn1.toFixed(2));
             document.getElementById('proceso_SN1').innerHTML = sn1.toFixed(2)
-
+            $("#diseñoEconomico_td").hide();
 
             var espesor_asfalto_recomendado = (sn3 / parseFloat($('#coeficiente_a1_oculto').val()));
 
