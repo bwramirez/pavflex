@@ -325,7 +325,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " " + "      +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfBaseSubbase();
                 $('#graphics8').show(10);
@@ -509,7 +509,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -695,7 +695,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
 
                 espAsfBase();
@@ -822,7 +822,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
 
                 espAsfSubbase();
@@ -1028,7 +1028,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspBase').text() + " x " + parseFloat($('#coefa2').val()).toFixed(3) + " x " + parseFloat($('#m2').val()).toFixed(2) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfBase();
                 $('#graphics9').show(10);
@@ -1154,7 +1154,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -1359,7 +1359,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " " + "     +     " + " " + $('#resultado_EspSubbase').text() + " x " + parseFloat($('#coefa3').val()).toFixed(3) + " x " + parseFloat($('#m3').val()).toFixed(2) + " " + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -1485,7 +1485,7 @@ $(document).ready(function () {
                 document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
                 document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
                 document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+                document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
 
                 espAsfSubbase();
                 $('#graphics10').show(10);
@@ -1623,7 +1623,7 @@ $(document).ready(function () {
             document.getElementById("calcSN").innerHTML = "SN" + " = " + $('#resultado_EspAsfalte').text() + " x " + parseFloat($('#coeficiente_a1_oculto').val()).toFixed(3) + " = " + SNf.toFixed(2);
             document.getElementById("procesoRevisarSN").innerHTML = "Revisar" + " " + "SN" + " > " + "SN<SUB>3</SUB>";
             document.getElementById("calcRevisarSN").innerHTML = SNf.toFixed(2) + " > " + sn3.toFixed(2) + " " + rev;
-            document.getElementById("explicacion_revision_sn").innerHTML = "En este caso el número estructural es "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Así que, los espesores de las capas de pavimento flexible son:";
+            document.getElementById("explicacion_revision_sn").innerHTML = "En este caso, el número estructural de las capas diseñadas es de "+SNf.toFixed(2) + " el cual es mayor al SN<SUB>3</SUB> = " + sn3.toFixed(2) + ", por lo tanto, el diseño es satisfactorio. Por lo tanto, los espesores de las capas de pavimento flexible son:";
             document.getElementById('graphics8').style.display = 'none';
             document.getElementById('graphics9').style.display = 'none';
             document.getElementById('graphics10').style.display = 'none';

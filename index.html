@@ -1286,7 +1286,7 @@
                                                                         <section class="caracteristicas_subrasante" id="caracteristicas_subrasante">
                                                                             <table style="font-size: 10px">
                                                                                 <tr id="subrasante_caracteristicas_tr">
-                                                                                    <td id="subrasante_caracteristicas_td">CBR (%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                                                    <td id="subrasante_caracteristicas_td">CBR (%)</td>
                                                                                     <td>
                                                                                         <input class="form-control form-control-sm numeric2" type='text' id='subrasante_caracteristicas_flexible' placeholder="Ingrese valor" onchange="mrcalular()">
                                                                                     </td>
@@ -1902,7 +1902,7 @@
                                                                                     <table id="proceso_interpo_drenaje_base" style="width:100%;">
                                                                                         <tr style="text-align : justify;">
                                                                                             <td>
-                                                                                                <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, será necesario interpolar. En este caso se tiene:</p>
+                                                                                                <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. Para porcentajes de tiempo de exposición mayores al 25%, se obtiene directamente el coeficiente de drenaje, mientras que para los demás casos, es necesario interpolar. En este caso se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -2049,7 +2049,7 @@
                                                                                     <table id="proceso_interpo_drenaje_subbase" style="width:100%;">
                                                                                         <tr style="text-align : justify;">
                                                                                             <td>
-                                                                                                    <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. En caso de que esté dentro de un rango, será necesario interpolar. En este caso se tiene:</p>
+                                                                                                    <p>A partir de la celda sombreada se obtiene el coeficiente de drenaje. Para porcentajes de tiempo de exposición mayores al 25%, se obtiene directamente el coeficiente de drenaje, mientras que para los demás casos, es necesario interpolar. En este caso se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr class="style_drenaje_subbase">
@@ -2291,9 +2291,9 @@
                                                                                     <table id="proceso_cls_SN" style="width:100%">
                                                                                         <tr class="formato_ecuacion_SN">
                                                                                             <td colspan="3">
-                                                                                                    <p class="explicacion_calculos" style="text-align: justify; display:none">También se puede calcular el número estructural mediante el uso de la siguiente ecuación:</p>
+                                                                                                    <p class="explicacion_calculos" style="text-align: justify; display:none">El número estructural de las capas del pavimento, también pueden ser calculadas usando la siguiente ecuación:</p>
                                                                                                 <img src="Images/FlotaVehiculos/ecusn.png" width="550px" height="80px" />
-                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Usando los módulos resilientes correspondientes e iterando mediante el método Newton-Raphson  se tiene:</p>
+                                                                                                <p class="explicacion_calculos" style="text-align: justify; display:none">Con los módulos resilientes correspondientes e iterando mediante el método Newton-Raphson se tiene:</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -3099,7 +3099,7 @@
             <table style="width: 100%" border="1" cellspacing=0 class="table-responsive  table-hover  table-condensed table-editable">
                 <tr>
                     <td style="font-size: 20px; font-weight: bold; vertical-align: middle; text-align: center;">
-                        Parámetros de sub rasante
+                        Parámetros de subrasante
                     </td>
                 </tr>
                 
@@ -3250,10 +3250,10 @@
         <p style="text-align: justify; display:none; margin:-2.0% 0;" class="ESALS_flex">N: periodo de diseño en años,</p>
         <p style="text-align: justify; display:none" class="ESALS_flex">Fe: Factor de camión.</p>
         
-        <p style="text-align: justify; display:none" class="ESALS_flex">En la tabla 1 se observan los valores de ESAL´S calculado por cada flota vehicular y también el valor total de ESAL´S, los factores de equivalencia ilustrados en la tabla se obtuvieron interpolando valores de las tablas de factores de equivalencia del método AASHTO, los cuales están en función de la serviciabilidad final (pt), tipo de eje, peso del eje y el espesor asumido inicialmente inicialmente.</p>
+        <p style="text-align: justify; display:none" class="ESALS_flex">En la tabla 1 se observan los valores de ESAL´S calculado para cada vehículo de la flota vehicular y también el valor total de ESAL´S. Los factores de equivalencia de carga se obtienen de la interpolación de las tablas realizadas por el método, las cuales son elegidas en función de la serviciabilidad final (pt) y el tipo de eje. En ellas, con cada peso del eje del vehículo y el número estructural total (valor asumido), se obtienen dichos factores.</p>
             
         
-        <p style="text-align: center; font-size: 14px; display:none" class="ESALS_flex">Tabla 1. Valores de factor de equivalencia y ESAL´S obtenidos</p>
+        <p style="text-align: center; font-size: 14px; display:none" class="ESALS_flex">Tabla 1. Valores de factor de equivalencia de carga y ESAL´S obtenidos</p>
     </div>
     <div id="titulo_drenajeBase_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
@@ -3296,7 +3296,7 @@
             <p style="text-align: center; font-size: 20px">
             <strong>Coeficiente estructural y módulo resiliente de subbase</strong> 
         </p>
-        <p style="font-size: 16px; text-align: justify">A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco, el cual depende de párametros mecánicos del material.</p>
+        
         <p id="print_PropiedadSubbase" style="font-size: 16px; text-align: justify"></p> 
         <img style="width: 100%" id="copy_carta_subbase">
         <p id="figura_carta_subbase" style="font-size: 14px; text-align: center"></p>
@@ -3339,7 +3339,7 @@
     <div id="titulo_clcEspesor_reporte" style="margin-bottom: 0px; display:none " class='page-break-after'>
             <p style="text-align: center; font-size: 20px">
            <strong>Cálculo de espesor de capas de pavimento</strong>
-           <p style="text-align: justify;">Para el cálculo del espesor de las capas del pavimento se usa el método de diseño por capas. En este diseño se debe tener en cuenta los espesores mínimos de la siguiente tabla, dado que no es práctico ni económico tener espesores de capas muy delgados. Los valores de los espesores deben redondearse a 0,5 pulgadas más cercano.</p>
+           <p id="explicación_espesor_minimo" style="text-align: justify;"></p>
         </p>
     </div>
     <!-- BEGIN JS PLUGIN -->

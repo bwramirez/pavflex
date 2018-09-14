@@ -71,6 +71,7 @@ function imprimir1() {
 
 	var recibepropbase = $("#base_caracteristicas_td").text();
 	if (recibepropbase == "CBR (%)") {
+		recibepropbase = "CBR"
 		var unidadbase = " %";
 	} else {
 		var unidadbase = "";
@@ -96,7 +97,8 @@ function imprimir1() {
 	//Parámetros de subbase
 
 	var recibepropsbase = $("#subbase_caracteristicas_td").text();
-	if (recibepropsbase == "CBR %") {
+	if (recibepropsbase == "CBR (%)") {
+		recibepropsbase = "CBR"
 		var unidadsbase = " %";
 	} else {
 		var unidadsbase = "";
@@ -255,6 +257,7 @@ function imprimir() {
 
 	var recibepropbase = $("#base_caracteristicas_td").text();
 	if (recibepropbase == "CBR (%)") {
+		recibepropbase = "CBR"
 		var unidadbase = " %";
 	} else {
 		var unidadbase = "";
@@ -292,7 +295,8 @@ function imprimir() {
 	//Parámetros de subbase
 
 	var recibepropsbase = $("#subbase_caracteristicas_td").text();
-	if (recibepropsbase == "CBR %") {
+	if (recibepropsbase == "CBR (%)") {
+		recibepropsbase = "CBR"
 		var unidadsbase = " %";
 	} else {
 		var unidadsbase = "";
@@ -357,7 +361,7 @@ function imprimir() {
 
 	//Resultados
 	var recibeSN3 = document.getElementById('sn3').value;
-	document.getElementById('txtSN3').innerHTML = "<strong>" + "Número estructural total requerido (SN<sub>3</sub>3): " + "</strong>" + recibeSN3;
+	document.getElementById('txtSN3').innerHTML = "<strong>" + "Número estructural total requerido (SN<sub>3</sub>): " + "</strong>" + recibeSN3;
 	var recibeSN2 = document.getElementById('sn2').value;
 	document.getElementById('txtSN2').innerHTML = "<strong>" + "Número estructural base y carpeta asfáltica (SN<sub>2</sub>): " + "</strong>" + recibeSN2;
 	var recibeSN1 = document.getElementById('sn1').value;
@@ -453,6 +457,14 @@ function imprimir() {
 
 	var addBase = $("#addBase")
 	var addSubbase = $("#addSubbase")
+	var contmat = $("#bcont").text();
+	if (contmat == ("Base granular")) {
+		contmat = "base granular"
+	} else if (contmat == ("Base tratada con cemento")) {
+		contmat = "base tratada con cemento"
+	} else if (contmat == ("Base tratada con asfálto")) {
+		contmat = "base tratada con asfálto"
+	}
 	if ((addBase.is(":checked")) && (addSubbase.is(":checked"))) {
 		var printme3 = document.getElementById("titulo_drenajeBase_reporte");
 		var printme4 = document.getElementById("print_drenaje_base");
@@ -462,12 +474,12 @@ function imprimir() {
 		var printme8 = document.getElementById("titulo_graficaSubbase_reporte");
 		var numero_figura_sn = 4;
 		document.getElementById('figura_carta_base').innerHTML = "Figura 1. Carta de diseño para parámetros de la base";
-		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes dependiendo de la característica del material de base. En la figura 1 se observa que con una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + ", se obtiene el valor de coeficiente estructural a<sub>2</sub> igual a " + "<strong>" + recibea2 + "</strong>" + " y un módulo resiliente igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes, dependiendo de la característica del material de base. En este caso se trata de una " +contmat+ ", por lo que se usa la figura 1. En esta figura se traza una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + "Esta línea debe alcanzar hasta el coeficiente estructural y el módulo resiliente, en donde se leen esos valores; por lo tanto, el valor de coeficiente estructural a<sub>2</sub> es igual a " + "<strong>" + recibea2 + "</strong>" + " y el módulo resiliente es igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
 		document.getElementById('figura_carta_subbase').innerHTML = "Figura 2. Carta de diseño para parámetros de la subbase";
-		document.getElementById('print_PropiedadSubbase').innerHTML = "Con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + " se traza una línea horizontal en la figura 2, con la cual se obtiene el valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadSubbase').innerHTML = "A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco que también depende de párametros mecánicos del material. De manera similar al caso anterior, en la figura 2 se traza una línea horizontal con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + ", con la que se obtiene un valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
 		document.getElementById('figura_carta_moduloElastico').innerHTML = "Figura 3. Carta de diseño para estimación del módulo elástico de la carpeta asfáltica.";
 		document.getElementById('print_PropiedadModuloElastico').innerHTML = "Para determinar el coeficiente estructural de carpeta asfáltica, el cual está en función del módulo elástico, se emplea el ábaco ilustrado en la figura 3. En dicho ábaco, con el valor correspondiente de módulo elástico igual a " + "<strong>" + recibeMe + " psi" + "</strong>" + " se traza una línea vertical hasta llegar a la curva, y luego una línea horizontal hasta llegar al eje vertical que corresponde al coeficiente estructural. En este caso el coeficiente estructural a<sub>1</sub> es igual a " + "<strong>" + recibea1 + ".</strong>";
-		document.getElementById('print_SN').innerHTML = "Para el trazado de este ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea por la desviación estándar (" + recibeSo + ") y llegue a la línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 4 se han trazado tres líneas que corresponden a los módulos resilientes de la subrasante, subbase y base. A partir de la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en estas intersecciones se traza una línea vertical hasta llegar al número estructural, donde se leen los valores de SN<sub>1</sub> igual a " + recibeSN1 + ", SN<sub>2</sub> igual a " + recibeSN2 + " y SN<sub>3</sub> igual a " + recibeSN3 + "."  ;
+		document.getElementById('print_SN').innerHTML = "En el ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea que pasa por la desviación estándar (" + recibeSo + ") y llegue a la primera línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 4 se han trazado tres líneas que corresponden a los módulos resilientes de la subrasante, subbase y base. A partir del punto ubicado en la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en estas intersecciones se traza una línea vertical hasta llegar al número estructural y donde se leen los valores. En este caso, el SN<sub>1</sub> es igual a " + recibeSN1 + ", SN<sub>2</sub> es igual a " + recibeSN2 + " y SN<sub>3</sub> es igual a " + recibeSN3 + "."  ;
 		document.getElementById('figura_carta_sn').innerHTML = "Figura 4. Carta de diseño para estimación del número estructural";
 		
 		if ((recibeTMDA === "") && (reciber === "") && (recibePD === "") && (recibeD === "") && (recibeSN === "")) {
@@ -490,12 +502,12 @@ function imprimir() {
 		var printme8 = document.getElementById("titulo_graficaSubbase_vacia");
 		var numero_figura_sn = 3;
 		document.getElementById('figura_carta_base').innerHTML = "Figura 1. Carta de diseño para parámetros de la base";
-		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes dependiendo de la característica del material de base. En la figura 1 se observa que con una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + ", se obtiene el valor de coeficiente estructural a<sub>2</sub> igual a " + "<strong>" + recibea2 + "</strong>" + " y un módulo resiliente igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes, dependiendo de la característica del material de base. En este caso se trata de una " +contmat+ ", por lo que se usa la figura 1. En esta figura se traza una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + "Esta línea debe alcanzar hasta el coeficiente estructural y el módulo resiliente, en donde se leen esos valores; por lo tanto, el valor de coeficiente estructural a<sub>2</sub> es igual a " + "<strong>" + recibea2 + "</strong>" + " y el módulo resiliente es igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
 		document.getElementById('figura_carta_subbase').innerHTML = "Figura 2. Carta de diseño para parámetros de la subbase";
-		document.getElementById('print_PropiedadSubbase').innerHTML = "Con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + " se traza una línea horizontal en la figura 2, con la cual se obtiene el valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadSubbase').innerHTML = "A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco que también depende de párametros mecánicos del material. De manera similar al caso anterior, en la figura 2 se traza una línea horizontal con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + ", con la que se obtiene un valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
 		document.getElementById('figura_carta_moduloElastico').innerHTML = "Figura 2. Carta de diseño para estimación del módulo elástico de la carpeta asfáltica.";
 		document.getElementById('print_PropiedadModuloElastico').innerHTML = "Para determinar el coeficiente estructural de carpeta asfáltica, el cual está en función del módulo elástico, se emplea el ábaco ilustrado en la figura 2. En dicho ábaco, con el valor correspondiente de módulo elástico igual a " + "<strong>" + recibeMe + " psi" + "</strong>" + " se traza una línea vertical hasta llegar a la curva, y luego una línea horizontal hasta llegar al eje vertical que corresponde al coeficiente estructural. En este caso el coeficiente estructural a<sub>1</sub> es igual a " + "<strong>" + recibea1 + ".</strong>";
-		document.getElementById('print_SN').innerHTML = "Para el trazado de este ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea por la desviación estándar (" + recibeSo + ") y llegue a la línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 3 se han trazado dos líneas que corresponden a los módulos resilientes de la subrasante y base. A partir de la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en estas intersecciones se traza una línea vertical hasta llegar al número estructural, donde se leen los valores de SN<sub>1</sub> igual a " + recibeSN1 + " y SN<sub>3</sub> igual a " + recibeSN3 + "."  ;
+		document.getElementById('print_SN').innerHTML = "En el ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea que pasa por la desviación estándar (" + recibeSo + ") y llegue a la primera línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 3 se han trazado dos líneas que corresponden a los módulos resilientes de la subrasante y base. A partir del punto ubicado en la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en estas intersecciones se traza una línea vertical hasta llegar al número estructural y en donde se leen los valores. En este caso, el SN<sub>1</sub> es igual a " + recibeSN1 + " y SN<sub>3</sub> es igual a " + recibeSN3 + "."  ;
 		document.getElementById('figura_carta_sn').innerHTML = "Figura 3. Carta de diseño para estimación del número estructural";
 		
 		if ((recibeTMDA === "") && (reciber === "") && (recibePD === "") && (recibeD === "") && (recibeSN === "")) {
@@ -517,12 +529,12 @@ function imprimir() {
 		var printme8 = document.getElementById("titulo_graficaSubbase_reporte");
 		var numero_figura_sn = 3;
 		document.getElementById('figura_carta_base').innerHTML = "Figura 1. Carta de diseño para parámetros de la base";
-		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes dependiendo de la característica del material de base. En la figura 1 se observa que con una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + ", se obtiene el valor de coeficiente estructural a<sub>2</sub> igual a " + "<strong>" + recibea2 + "</strong>" + " y un módulo resiliente igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes, dependiendo de la característica del material de base. En este caso se trata de una " +contmat+ ", por lo que se usa la figura 1. En esta figura se traza una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + "Esta línea debe alcanzar hasta el coeficiente estructural y el módulo resiliente, en donde se leen esos valores; por lo tanto, el valor de coeficiente estructural a<sub>2</sub> es igual a " + "<strong>" + recibea2 + "</strong>" + " y el módulo resiliente es igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
 		document.getElementById('figura_carta_subbase').innerHTML = "Figura 1. Carta de diseño para parámetros de la subbase";
-		document.getElementById('print_PropiedadSubbase').innerHTML = "Con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + " se traza una línea horizontal en la figura 1, con la cual se obtiene el valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadSubbase').innerHTML = "A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco que también depende de párametros mecánicos del material. De manera similar al caso anterior, en la figura 1 se traza una línea horizontal con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + ", con la que se obtiene un valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
 		document.getElementById('figura_carta_moduloElastico').innerHTML = "Figura 2. Carta de diseño para estimación del módulo elástico de la carpeta asfáltica.";
 		document.getElementById('print_PropiedadModuloElastico').innerHTML = "Para determinar el coeficiente estructural de carpeta asfáltica, el cual está en función del módulo elástico, se emplea el ábaco ilustrado en la figura 2. En dicho ábaco, con el valor correspondiente de módulo elástico igual a " + "<strong>" + recibeMe + " psi" + "</strong>" + " se traza una línea vertical hasta llegar a la curva, y luego una línea horizontal hasta llegar al eje vertical que corresponde al coeficiente estructural. En este caso el coeficiente estructural a<sub>1</sub> es igual a " + "<strong>" + recibea1 + ".</strong>";
-		document.getElementById('print_SN').innerHTML = "Para el trazado de este ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea por la desviación estándar (" + recibeSo + ") y llegue a la línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 3 se han trazado dos líneas que corresponden a los módulos resilientes de la subrasante y subbase. A partir de la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en estas intersecciones se traza una línea vertical hasta llegar al número estructural, donde se leen los valores de SN<sub>2</sub> igual a " + recibeSN2 +  " y SN<sub>3</sub> igual a " + recibeSN3 + "."  ;
+		document.getElementById('print_SN').innerHTML = "En el ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea que pasa por la desviación estándar (" + recibeSo + ") y llegue a la primera línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 3 se han trazado dos líneas que corresponden a los módulos resilientes de la subrasante y subbase. A partir del punto ubicado en de la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en estas intersecciones se traza una línea vertical hasta llegar al número estructural y en donde se leen los valores. En este caso, el SN<sub>2</sub> es igual a " + recibeSN2 +  " y SN<sub>3</sub> es igual a " + recibeSN3 + "."  ;
 		document.getElementById('figura_carta_sn').innerHTML = "Figura 3. Carta de diseño para estimación del número estructural";
 		
 		if ((recibeTMDA === "") && (reciber === "") && (recibePD === "") && (recibeD === "") && (recibeSN === "")) {
@@ -543,12 +555,12 @@ function imprimir() {
 		var printme8 = document.getElementById("titulo_graficaSubbase_vacia");
 		var numero_figura_sn = 2;
 		document.getElementById('figura_carta_base').innerHTML = "Figura 1. Carta de diseño para parámetros de la base";
-		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes dependiendo de la característica del material de base. En la figura 1 se observa que con una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + ", se obtiene el valor de coeficiente estructural a<sub>2</sub> igual a " + "<strong>" + recibea2 + "</strong>" + " y un módulo resiliente igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadBase').innerHTML = "Para el cálculo de estos parámetros existen tres ábacos diferentes, dependiendo de la característica del material de base. En este caso se trata de una " +contmat+ ", por lo que se usa la figura 1. En esta figura se traza una línea horizontal a partir del " + recibepropbase + " igual a " + recibepropvbase + unidadbase + "Esta línea debe alcanzar hasta el coeficiente estructural y el módulo resiliente, en donde se leen esos valores; por lo tanto, el valor de coeficiente estructural a<sub>2</sub> es igual a " + "<strong>" + recibea2 + "</strong>" + " y el módulo resiliente es igual a " + "<strong>" + recibeMb + " psi." + "</strong>";
 		document.getElementById('figura_carta_subbase').innerHTML = "Figura 1. Carta de diseño para parámetros de la subbase";
-		document.getElementById('print_PropiedadSubbase').innerHTML = "Con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + " se traza una línea horizontal en la figura 2, con la cual se obtiene el valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
+		document.getElementById('print_PropiedadSubbase').innerHTML = "A diferencia de la capa base, para la determinación de estos parámetros existe solo un ábaco que también depende de párametros mecánicos del material. De manera similar al caso anterior, en la figura 1 se traza una línea horizontal con un " + recibepropsbase + " igual a " + recibepropvsbase + unidadsbase + ", con la que se obtiene un valor de coeficiente estructural a<sub>3</sub> igual a " + "<strong>" + recibea3 + "</strong>" + " y un módulo de resiliencia igual a " + "<strong>" + recibeMsb + " psi." + "</strong>";
 		document.getElementById('figura_carta_moduloElastico').innerHTML = "Figura 1. Carta de diseño para estimación del módulo elástico de la carpeta asfáltica.";
 		document.getElementById('print_PropiedadModuloElastico').innerHTML = "Para determinar el coeficiente estructural de carpeta asfáltica, el cual está en función del módulo elástico, se emplea el ábaco ilustrado en la figura 1. En dicho ábaco, con el valor correspondiente de módulo elástico igual a " + "<strong>" + recibeMe + " psi" + "</strong>" + " se traza una línea vertical hasta llegar a la curva, y luego una línea horizontal hasta llegar al eje vertical que corresponde al coeficiente estructural. En este caso el coeficiente estructural a<sub>1</sub> es igual a " + "<strong>" + recibea1 + ".</strong>";
-		document.getElementById('print_SN').innerHTML = "Para el trazado de este ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea por la desviación estándar (" + recibeSo + ") y llegue a la línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 2 se ha trazado una línea que corresponde al módulo resiliente de la subrasante. A partir de la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en esta intersección se traza una línea vertical hasta llegar al número estructural, donde se leen el valor de SN<sub>3</sub> igual a " + recibeSN3 + "."  ;
+		document.getElementById('print_SN').innerHTML = "En el ábaco se debe empezar ubicando el valor correspondiente de confiabilidad (" + recibeconfi + "), luego se traza una línea que pasa por la desviación estándar (" + recibeSo + ") y llegue a la primera línea de paso (TL). Desde ese punto se traza una línea que pase por el número de ejes equivalentes (" + recibeESALS + "), y que llegue hasta la segunda línea de paso (TL). A partir de este punto se traza otra línea que pase por el eje del módulo resiliente de la capa y llege al borde vertical de la cuadrícula. En la figura 2 se ha trazado una línea que corresponde al módulo resiliente de la subrasante. A partir del punto ubicado en de la cuadrícula, se traza una línea horizontal hasta alcanzar la pérdida de serviciabilidad de diseño (" + recibepsi + "). Finalmente, en esta intersección se traza una línea vertical hasta llegar al número estructural y en donde se lee el valor. En este caso, el SN<sub>3</sub> es igual a " + recibeSN3 + "."  ;
 		document.getElementById('figura_carta_sn').innerHTML = "Figura 2. Carta de diseño para estimación del número estructural";
 		
 		if ((recibeTMDA === "") && (reciber === "") && (recibePD === "") && (recibeD === "") && (recibeSN === "")) {
@@ -565,7 +577,7 @@ function imprimir() {
 	document.getElementById('tab_drenaje_base').innerHTML = "Tabla " + tab_drenaje_base + ". Valores de coeficiente de drenaje para la base."
 	document.getElementById('explicacionDrenaje_subbase').innerHTML = "Para la capa de subbase, la calidad del drenaje es " + recibecds_minuscula + " y el porcentaje de tiempo de exposición de la estructura es del " + recibepss + "%." + " A partir de estos datos y la tabla " +tab_drenaje_subbase+ " se determina el coeficiente de drenaje de esta capa." 
 	document.getElementById('tab_drenaje_subbase').innerHTML = "Tabla " + tab_drenaje_subbase + ". Valores de coeficiente de drenaje."
-	document.getElementById('explicacionSn').innerHTML = "El método gráfico permite determinar los números estructurales de las capas con el ábaco que se ilustra en la figura " + numero_figura_sn + ". Para ingresar a ella es necesario contar con la confiabilidad (R), desviación estándar (So), número de ejes equivalentes (ESAL´S), módulo resiliente de la capa (Mr) y el índice de serviciabilidad (Δpsi)."
+	document.getElementById('explicacionSn').innerHTML = "Para calcular el número estructural por el método gráfico se usa el ábaco de la figura " + numero_figura_sn + ". En esta figura se pueden calcular los números estruturales de todas las capas del pavimento. Para ingresar a ella es necesario contar con el valor de confiabilidad (R), desviación estándar (So), número de ejes equivalentes (ESAL´S), módulo resiliente de la capa (Mr) y el índice de serviciabilidad (Δpsi)."
 	
 	
 	var printme9 = document.getElementById("titulo_graficaModuloElastico_reporte");
@@ -575,6 +587,7 @@ function imprimir() {
 	var printme12 = document.getElementById("copySN");
 	var printme13 = document.getElementById("titulo_clcEspesor_reporte");
 	document.getElementById('numero-tabla_EspesirMin').innerHTML = "Tabla " + numero_tabla_EspesirMin + ". Valores mínimos de espesores de capas recomendados por la AASHTO."
+	document.getElementById('explicación_espesor_minimo').innerHTML = "Para el cálculo del espesor de las capas del pavimento se usa el método de diseño por capas. Dado que no es práctico ni económico tener espesores de capas muy delgados, se deben considerar espesores mínimos de capas (ver tabla " +numero_tabla_EspesirMin+"). Cabe mencionar que los valores de los espesores deben redondearse a 0,5 pulgadas más cercano."
 	$(".ocultar_explicación_espesor").hide();
 	$(".explicacion_calculos").show();
 	var printme14 = document.getElementById("copyEspesor");
