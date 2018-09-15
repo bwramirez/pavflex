@@ -360,7 +360,8 @@ $(document).ready(function () {
         $('#panelSecundaria').toggle();
         var panelSecundaria = $("#panelSecundaria")
         if (panelSecundaria.is(":visible")) {
-            $(".espaciadores").hide();
+            $(".liBtnEjemplo").hide();
+            
             $('#tituloPrincipal').css('height', "40px");
             $('#tituloPrincipal').css('line-height', "40px");
             $('#tituloSecundario').css('height', "40px");
@@ -375,7 +376,7 @@ $(document).ready(function () {
             
             
         } else {
-            $(".espaciadores").show();
+            $(".liBtnEjemplo").show();
             $('#tituloPrincipal').css('height', "30px");
             $('#tituloPrincipal').css('line-height', "30px");
             $('#tituloSecundario').css('height', "30px");
