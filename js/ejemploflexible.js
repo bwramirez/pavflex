@@ -64,7 +64,7 @@ $(document).ready(function () {
         modulo_elastico();
         var altura = $(document).height();
         $("html, body").animate({
-            scrollTop: altura + "px"
+            scrollTop: 0 + "px"
         });
 
 

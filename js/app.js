@@ -332,6 +332,8 @@ $(document).ready(function () {
         $("#FlotaVehiculo").find("." + $(this).attr("name")).toggle();
 
     });
+
+    
     document.getElementById('reporte').style.display = 'none';
     document.getElementById('detalle').style.display = 'none';
     document.getElementById('btnClcSN').style.display = 'none';
@@ -349,7 +351,9 @@ $(document).ready(function () {
     $("#detalle").on("click", function () {
         $("#detalle").hide();
         $("#reporte").hide();
-        
+        $("html, body").animate({
+            scrollTop: 0 + "px"
+        });
         $("#panelPrincipal").toggleClass('col-md-12 col-md-5');
         $("#panelPrincipal").find(".aj").toggleClass('col-md-6 col-md-12');
         $("#panelPrincipal").find(".cg").toggleClass('col-md-4 col-md-12');
@@ -513,7 +517,7 @@ function copyPf() {
         $('#trafico_ptFlexible').val("2.5");
     }else if (pf > 2.5) {
         $('#trafico_ptFlexible').val("3");
-}
+    }
 }
 function copyDrenaje() {
     var drenporcent = parseFloat($('#porcentaje_humedad_m2').val())
@@ -523,23 +527,7 @@ function copyDrenaje() {
         clc_coeficiente_m3();
 }
 
-var calcsn = function (a) {
-    var zr = parseFloat($('#ZrFlexible').val());
-    var so = parseFloat($('#So_Flexible').val());
-    var w18 = parseFloat($('#Esals_Flexible').val());
-    var psi = parseFloat($('#psi').val());
 
-    for (i = 1; i < 10; i += 0.000001) {
-        var sn = eval((zr * so) + (9.36 * Math.log10(i + 1)) - (0.2) + (((Math.log10((psi) / (4.2 - 1.5)))) / (0.4 + (1094 / Math.pow((i + 1), 5.19)))) + (2.32 * Math.log10(a)) - 8.07 - (Math.log10(w18)));
-        if (0 <= sn && sn <= 0.001) {
-            return i;
-
-        } else {
-
-        }
-
-    }
-}
 
 
 
