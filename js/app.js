@@ -26,8 +26,7 @@ $(document).ready(function () {
     $('#salirProcesos').click(function () {
         $('#detalle').trigger('click');
         $("#detalle").show(); 
-        $("#reporte").show();
-       
+        $("#reporte").show();      
 
     });
     

@@ -233,19 +233,17 @@ function imprimir() {
 	if ((recibeTMDA === "") && (reciber === "") && (recibePD === "") && (recibeD === "") && (recibeSN === "")) {
 		$(".ESALS_flex").hide();
 		$(".ocultParametros_trafico").hide();
-		
+		$("#aviso_ESALS").hide();
 
 	} else {
 		$(".ESALS_flex").show();
 		$("#aviso_ESALS").hide();
-		$(".ocultParametros_trafico").show();
-		
-		
+		$(".ocultParametros_trafico").show();			
 		
 	}
 	
-	var print_proceso_Trafico = $("#trafico")
-	if (print_proceso_Trafico.is(":visible")) {		    
+	var print_table_Trafico = $("#trafico")
+	if (print_table_Trafico.is(":visible")) {		    
 		$("#aviso_ESALS").hide();
 		
 	} else {
